@@ -1,0 +1,51 @@
+
+.navbar {
+    margin: px auto 0;
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    border-radius: 8px;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    align-items: center;
+    
+}
+  
+.navbar a {
+    color: #999;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.navbar img{
+
+}
+  
+  /* Change background on mouse-over */
+.navbar a:hover {
+    border: none;
+    /* background: rgba(0, 0, 0, 0.4); */
+    background: #fff;
+    padding: 20px 20px;
+    color: #1b1b1b;
+}
+  
+  /* Add a color to the active/current link */
+.navbar a:active {
+    background-color: rgb(206, 230, 238);
+    color: gold;
+    cursor: pointer;
+}
+  
