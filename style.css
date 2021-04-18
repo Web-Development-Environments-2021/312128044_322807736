@@ -1,3 +1,10 @@
+/* #welcomeDiv{display: ;} */
+#registrationDiv{display: none;}
+#loginDiv{display: none;} 
+#settingsDiv {display: none;}
+#aboutDiv {display: none;}
+#gameDiv {display: none;}
+
 
 .navbar {
     margin: px auto 0;
@@ -10,35 +17,33 @@
     border-radius: 8px;
     display: block;
     color: #f2f2f2;
-    padding: 14px 16px;
-    text-decoration: none;
-    align-items: center;
-    
+    padding: 10px 16px;
+    text-align: center;
 }
-  
 .navbar a {
     color: #999;
     background: rgba(0, 0, 0, 0.5);
-    padding: 20px 20px;
+    padding: 20px 35px;
     font-size: 18px;
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-left: 15px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-left: 30px;
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    bottom: 15px;
+    
 }
 
-.navbar img{
 
-}
-  
-  /* Change background on mouse-over */
+
+/* Change background on mouse-over */
 .navbar a:hover {
     border: none;
     /* background: rgba(0, 0, 0, 0.4); */
     background: #fff;
-    padding: 20px 20px;
+    padding: 35px 40px;
     color: #1b1b1b;
 }
   
