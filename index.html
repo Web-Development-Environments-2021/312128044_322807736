@@ -12,12 +12,12 @@
 
 		<nav id="navbar" class="navbar" >
 			<img src="https://static.thenounproject.com/png/9215-200.png" class="logo" width="50" height="50" style="left: 0px;background-color:white; border-radius: 15px;"></img>
-			<a id="wa" href="#welcomeDiv">Welcome</a>
-			<a id="ra" href="#registrationDiv">Registration</a>
-			<a id="la" href="#loginDiv">Login</a>
-			<a id="sa" href="#settingsDiv">Settings</a>
-			<a id="aa" href="#aboutDiv">About</a>
-			<a id="ga" href="#gameDiv">Game</a>
+			<a id="wa" href="#welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a>
+			<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
+			<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
+			<a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a>
+			<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
+			<a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a>
 		</nav>
 		<br><br><br><br>
 		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
@@ -26,23 +26,25 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 
-
-		<div id="welcomeDiv">welcomeDiv
+		<menus class = "menus">
+		<div id="welcomeDiv" style="display: block;" ><headline>Welcome!</headline><br><br><br><br><br><br><br><br><br><br>
+			<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
+			<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
 		</div> 
 
-		<div id="registrationDiv">registrationDiv
+		<div id="registrationDiv" style="display: none;">registrationDiv
 		</div>
 
-		<div id="loginDiv">loginDiv
+		<div id="loginDiv" style="display: none;">loginDiv
 		</div>
 
-		<div id="settingsDiv">settingsDiv
+		<div id="settingsDiv" style="display: none;">settingsDiv
 		</div>
 		
-		<div id="aboutDiv">aboutDiv
+		<div id="aboutDiv" style="display: none;">aboutDiv
 		</div>
 		
-		<div id="gameDiv">
+		<div id="gameDiv" style="display: none;">
 			<div id="score">
 				<label for="lblScore">SCORE:</label>
 				<input id="lblScore" type="text" />
@@ -55,11 +57,23 @@
 				<canvas id="canvas" height="600" width="600"></canvas>
 			</div>
 		</div>
-
+	</menus>
 	</body>
 
 
 	<footer>
 
 	</footer>
+	<script type = "text/javascript">
+	let currDiv = 'welcomeDiv';
+	function togVis(divID)
+	{
+		if(document.getElementById(divID).style.display == 'block')
+			{return;}
+		
+		document.getElementById(currDiv).style.display = 'none';
+		document.getElementById(divID).style.display = 'block';
+		currDiv = divID;
+	}
+	</script>
 </html>
