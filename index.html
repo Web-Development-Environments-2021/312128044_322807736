@@ -33,38 +33,70 @@
 		
 		</div> 
 
-		<div id="registrationDiv" style="display: none;">registrationDiv
+		<div id="registrationDiv" style="display: none;">
+			<headline style="text-shadow: 3px 3px 3px rgba(248, 60, 60, 0.897);"><b>Join Us!</b></headline>
 			<form action="/action_page.php" class="container">
+				
 				<secLine>Registration</secLine>
 				<br>
-				<label for="email"><b>User Name</b></label>
-				<input type="text" placeholder="Enter User Name" name="email" required>
+				<label for="userName"><b>User Name</b></label>
+				<input type="text" placeholder="Enter User Name" name="userName" required>
 			
 				<label for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
 			
-				<button type="submit" class="btn">Login</button>
+				<label for="fullName"><b>Full Name</b></label>
+				<input type="text" placeholder="Enter Full Name" name="fullName" required>
+
+				<label for="email"><b>Email</b></label>
+				<input type="email" placeholder="Enter Email" name="email" required>
+
+				
+				<label for="birthDate"><b>select your birth date</b></label>
+				<input type="date" id="birthday" name="birthday">
+
+				<button type="submit" class="btn">Sign Up!</button>
 			</form>
 		</div>
 
+
 		<div id="loginDiv" style="display: none;">
+			<headline style="text-shadow: 3px 3px 3px rgba(60, 120, 248, 0.897);"><b>Welcome Back!</b></headline>
 			<form action="/action_page.php" class="container">
 				<secLine>Login</secLine>
 				<br>
-				<label for="email"><b>User Name</b></label>
-				<input type="text" placeholder="Enter User Name" name="email" required>
+				<label for="userName"><b>User Name</b></label>
+				<input type="text" placeholder="Enter User Name" name="userName" required>
 			
 				<label for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
 			
-				<button type="submit" class="btn">Login</button>
+				<button type="submit" class="btn">Login!</button>
 			</form>
 		</div>
 
-		<div id="settingsDiv" style="display: none;">settingsDiv
+		<div id="settingsDiv" style="display: none;">
+			<headline ><b>How To Play</b></headline>
+			<p>
+				With Pacman you really get all of that. The idea here is that you are the hero in a maze and you have to eliminate all the enemies as fast as possible. 
+				You must do that as quickly as you can, otherwise you will lose the game and you definitely want to avoid such a thing as much as possible.
+				<br><br>
+				The thing to keep in mind about Pacman is that you have to collect all the bubbles on the game board in order to complete the game.
+				And while you do that you also need to figure out a way to avoid all those ghosts that are coming to get you.
+				<br><br>
+				The ability to play Pacman is really exciting because you are free to choose whatever route you want. And the Pacman online experience brings you so many different options all the time.
+				You never get to have the same gameplay, even if the game is quite distinct and unique. It’s all about being creative and having fun here, which is exactly what you need.
+			</p>
 		</div>
 		
-		<div id="aboutDiv" style="display: none;">aboutDiv
+		<div id="aboutDiv" style="display: none;">
+			<headline style="text-shadow: 3px 3px 3px rgba(248, 245, 60, 0.897);"><b>About PacMan</b></headline>
+			<p>
+				Pacman is a fun game that has been around for 4 decades(!!). Created in 1980, the idea behind this game is super simple. And that’s maybe the major reason why it is so popular even today, many more decades after its inception.
+				<Br><BR>
+				The thing that a lot of people like about action and arcade games is that they are always fun and they bring in a new perspective on the way you play.
+				<Br><BR><Br><BR><Br><BR>
+				
 		</div>
 		
 		<div id="gameDiv" style="display: none;">
@@ -85,7 +117,96 @@
 
 
 	<footer>
-
+		<!-- <br><br><br><br><br><br><br><br><br><br><br> -->
+		<div class="w3-row w3-center w3-small">
+			<div class="w3-col l3 m6 s12">
+			<div class="top10">
+			<h4>Top Tutorials</h4>
+			<a href="/html/default.asp">HTML Tutorial</a><br>
+			<a href="/css/default.asp">CSS Tutorial</a><br>
+			<a href="/js/default.asp">JavaScript Tutorial</a><br>
+			<a href="/howto/default.asp">How To Tutorial</a><br>
+			<a href="/sql/default.asp">SQL Tutorial</a><br>
+			<a href="/python/default.asp">Python Tutorial</a><br>
+			<a href="/w3css/default.asp">W3.CSS Tutorial</a><br>
+			<a href="/bootstrap/bootstrap_ver.asp">Bootstrap Tutorial</a><br>
+			<a href="/php/default.asp">PHP Tutorial</a><br>
+			<a href="/java/default.asp">Java Tutorial</a><br>
+			<a href="/cpp/default.asp">C++ Tutorial</a><br>
+			<a href="/jquery/default.asp">jQuery Tutorial</a><br>
+			</div>
+			</div>
+			<div class="w3-col l3 m6 s12">
+			<div class="top10">
+			<h4>Top References</h4>
+			<a href="/tags/default.asp">HTML Reference</a><br>
+			<a href="/cssref/default.asp">CSS Reference</a><br>
+			<a href="/jsref/default.asp">JavaScript Reference</a><br>
+			<a href="/sql/sql_ref_keywords.asp">SQL Reference</a><br>
+			<a href="/python/python_reference.asp">Python Reference</a><br>
+			<a href="/w3css/w3css_references.asp">W3.CSS Reference</a><br>
+			<a href="/bootstrap/bootstrap_ref_all_classes.asp">Bootstrap Reference</a><br>
+			<a href="/php/php_ref_overview.asp">PHP Reference</a><br>
+			<a href="/colors/colors_names.asp">HTML Colors</a><br>
+			<a href="/java/java_ref_keywords.asp">Java Reference</a><br>
+			<a href="/angular/angular_ref_directives.asp">Angular Reference</a><br>
+			<a href="/jquery/jquery_ref_overview.asp">jQuery Reference</a><br>
+			</div>
+			</div>
+			<div class="w3-col l3 m6 s12">
+			<div class="top10">
+			<h4>Top Examples</h4>
+			<a href="/html/html_examples.asp">HTML Examples</a><br>
+			<a href="/css/css_examples.asp">CSS Examples</a><br>
+			<a href="/js/js_examples.asp">JavaScript Examples</a><br>
+			<a href="/howto/default.asp">How To Examples</a><br>
+			<a href="/sql/sql_examples.asp">SQL Examples</a><br>
+			<a href="/python/python_examples.asp">Python Examples</a><br>
+			<a href="/w3css/w3css_examples.asp">W3.CSS Examples</a><br>
+			<a href="/bootstrap/bootstrap_examples.asp">Bootstrap Examples</a><br>
+			<a href="/php/php_examples.asp">PHP Examples</a><br>
+			<a href="/java/java_examples.asp">Java Examples</a><br>
+			<a href="/xml/xml_examples.asp">XML Examples</a><br>
+			<a href="/jquery/jquery_examples.asp">jQuery Examples</a><br>
+			</div>
+			</div>
+			<div class="w3-col l3 m6 s12">
+			<div class="top10">
+			<!--
+			<h4>Web Certificates</h4>
+			<a href="/cert/default.asp">HTML Certificate</a><br>
+			<a href="/cert/default.asp">CSS Certificate</a><br>
+			<a href="/cert/default.asp">JavaScript Certificate</a><br>
+			<a href="/cert/default.asp">SQL Certificate</a><br>
+			<a href="/cert/default.asp">Python Certificate</a><br>
+			<a href="/cert/default.asp">PHP Certificate</a><br>
+			<a href="/cert/default.asp">Bootstrap Certificate</a><br>
+			<a href="/cert/default.asp">XML Certificate</a><br>
+			<a href="/cert/default.asp">jQuery Certificate</a><br>
+			<a href="//www.w3schools.com/cert/default.asp" class="w3-button w3-margin-top w3-dark-grey" style="text-decoration:none">
+			Get Certified &raquo;</a>
+			-->
+			
+			<h4>Web Courses</h4>
+			<a href="https://courses.w3schools.com/courses/html" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on html course link in footer');">HTML Course</a><br>
+			<a href="https://courses.w3schools.com/courses/css" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on css course link in footer');">CSS Course</a><br>
+			<a href="https://courses.w3schools.com/courses/javascript" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on javascript course link in footer');">JavaScript Course</a><br>
+			<a href="https://courses.w3schools.com/programs/front-end" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on Front End course link in footer');">Front End Course</a><br>
+			<a href="https://courses.w3schools.com/courses/sql" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on sql course link in footer');">SQL Course</a><br>
+			<a href="https://courses.w3schools.com/courses/python" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on python course link in footer');">Python Course</a><br>
+			<a href="https://courses.w3schools.com/courses/php" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on php course link in footer');">PHP Course</a><br>
+			<a href="https://courses.w3schools.com/courses/jquery" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on jquery course link in footer');">jQuery Course</a><br>
+			<a href="https://courses.w3schools.com/courses/java" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on Java course link in footer');">Java Course</a><br>
+			<a href="https://courses.w3schools.com/courses/cplusplus" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on C++ course link in footer');">C++ Course</a><br>
+			<a href="https://courses.w3schools.com/courses/c-sharp" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on bootstrap C# link in footer');">C# Course</a><br>
+			<a href="https://courses.w3schools.com/courses/xml" target="_blank" onclick="ga('send', 'event', 'Courses' , 'Clicked on xml course link in footer');">XML Course</a><br>
+			<a href="https://courses.w3schools.com/" target="_blank" class="w3-button w3-margin-top w3-dark-grey w3-round" style="text-decoration:none" onclick="ga('send', 'event', 'Courses' , 'Clicked on get certified button in footer');">
+			Get Certified »</a>
+			
+			
+			</div>
+			</div>        
+			</div>
 	</footer>
 	<script type = "text/javascript">
 	let currDiv = 'welcomeDiv';

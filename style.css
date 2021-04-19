@@ -12,8 +12,9 @@ body {
     margin-top: 50px; /* Add a top margin to avoid content overlay */
     /* background-image: url(background_Pacman.png); */
     background-image: url(ghost.jpeg);
+    /* background-image: url(backgroung.jpg); */
     background-repeat: repeat;
-    background-size: 320px ;
+    background-size: 200px ;
     background-color: #cccccc;
     scroll-behavior: smooth;
     text-align: center;
@@ -21,9 +22,40 @@ body {
     margin-top: 20px; 
     font-family: "Oswald", "calibri", "Trebuchet MS";
     font-weight: 300;
-  }
+}
+headline{
+    font-family:"calibri",'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 84px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgba(208, 47, 223, 0.897);
+    
+}
 
+Secline{
+    font-family:"calibri",'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 68px;
+    text-align: center;
+    color: rgb(36, 34, 34);
+    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
+    
+}
 
+p{
+    font-family:"calibri";
+    letter-spacing: 2px;
+    font-size: 14px;
+    padding-left: 80px;
+    padding-right: 80px;
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    text-align: left;
+    color: ivory;
+}
+/* Navigation Bar */
 .navbar {
     margin: px auto 0;
     position: relative;
@@ -32,11 +64,12 @@ body {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    border-radius: 8px;
+    /* border-radius: 8px; */
     display: block;
     color: #f2f2f2;
     padding: 10px 16px;
     text-align: center;
+    z-index:100; position: fixed;
 }
 .navbar a {
     color: #999;
@@ -66,23 +99,27 @@ body {
     cursor: pointer;
 
 }
-
-
-#welcomeDiv{
-    margin-top: 3%;
-    background-image: url(https://pousta.com/wp-content/uploads/2017/01/pacman.jpg); 
-    align-items: center;
-    margin-bottom:10%; 
-    height: 50%;
+div{
+    margin-bottom:3%; 
 
   /* Position and center the image to scale nicely on all screens */
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
+/* Welcome Div */
+#welcomeDiv{
+    /* margin-top: 3%; */
+    background-image: url(https://pousta.com/wp-content/uploads/2017/01/pacman.jpg); 
+    align-items: center;
+    height: 50%;
+
+    
+}
 #welcomeDiv a{
-    color: #999;
+    color: rgba(201, 199, 199, 0.932);
     background: rgba(37, 37, 37, 0.445);
     padding: 20px 40px;
     font-size: 18px;
@@ -96,24 +133,18 @@ body {
     bottom: 80px;
     position: relative;
 }
-
-#welcomeDiv a:hover {
-    background: rgba(73, 73, 73, 0.664);
-    padding: 20px 40px;
-    color: #ffffffbe;
-}
 #welcomeDiv #rawd:hover {
     background-image: url(background_registrationbutton.jpeg); 
     background-size: 210px 60px;
     padding: 20px 40px;
-    color: #ffffffbe;
+    color: #ffffffe5;
 }
 #welcomeDiv #lawd:hover {
     background-image: url(background_login.jpeg); 
     background-size: 135px 60px;
     padding: 20px 40px;
-    transition-delay: 2s;
-    color: #ffffffbe;
+    /* transition-delay: 2s; */
+    color: #ffffff;
 }
 #welcomeDiv a:active {
     background-color: rgb(125, 47, 177);
@@ -121,56 +152,35 @@ body {
     cursor: pointer;
     transition-delay: 2s;
 }
-headline{
-    font-family:"calibri",'Trebuchet MS', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 84px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
-    
+
+/* Registration Div */
+#registrationDiv{
+    min-height: 800px;
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/691/291/711/video-games-pac-man-mash-ups-tron-wallpaper-preview.jpg);   
 }
-
-
-#loginDiv{
-
-    background-image: url(https://c4.wallpaperflare.com/wallpaper/691/291/711/video-games-pac-man-mash-ups-tron-wallpaper-preview.jpg);
-  /* Control the height of the image */
-    min-height: 750px;
-    
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-.container {
+#registrationDiv .container {
     position: absolute;
     right: 0;
     margin: 20px;
-    max-width: 350px;
+    max-width: 500px;
     padding: 16px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.82);
+    
 }
-
 /* Full-width input fields */
-input[type=text], input[type=password] {
+#registrationDiv input[type=text], input[type=password], input[type=email],input[type=date] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
 }
-
-input[type=text]:focus, input[type=password]:focus {
+#registrationDiv input[type=text]:focus, input[type=password]:focus , input[type=email]:focus,input[type=date]:focus {
     background-color: #ddd;
     outline: none;
 }
-
   /* Set a style for the submit button */
-.btn {
+#registrationDiv .btn {
     background-color: #8f2ead;
     color: white;
     padding: 16px 20px;
@@ -179,17 +189,73 @@ input[type=text]:focus, input[type=password]:focus {
     width: 100%;
     opacity: 0.9;
 }
-  
-.btn:hover {
+#registrationDiv .btn:hover {
     opacity: 1;
 }
-Secline{
-    font-family:"calibri",'Trebuchet MS', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 68px;
-    text-align: center;
-    color: rgb(36, 34, 34);
-    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
+
+
+/* Login Div */
+#loginDiv{
+
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/691/291/711/video-games-pac-man-mash-ups-tron-wallpaper-preview.jpg);
+  /* Control the height of the image */
+    min-height: 800px;
+   
+}
+#loginDiv .container {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 500px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.82);
     
+}
+/* Full-width input fields */
+#loginDiv input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+#loginDiv input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+/* Set a style for the submit button */
+#loginDiv .btn {
+    background-color: #8f2ead;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+#loginDiv .btn:hover {
+    opacity: 1;
+}
+
+/* <Setting Div> */
+#settingsDiv{
+    background-image: url(https://mocah.org/thumbs/4583829-blinky-pinky-inky-clyde-pacman-minimalism-retro-games-video-games-typography.jpg);
+  /* Control the height of the image */
+    min-height: 800px;
+    
+}
+
+/* <about Div> */
+#aboutDiv{
+    background-image: url(https://wallpaperaccess.com/full/656405.jpg);
+    min-height: 850px;
+    
+}
+
+
+
+
+/* footer */
+footer{
+    background-color: rgba(201, 199, 199, 0.932);
 }
