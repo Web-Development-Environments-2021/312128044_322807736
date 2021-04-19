@@ -1,5 +1,7 @@
 /* #welcomeDiv{display: ;} */
-
+* {
+    box-sizing: border-box;
+}
 html{
     scroll-behavior: smooth;
 }
@@ -58,20 +60,19 @@ body {
     padding: 20px 17px;
     color: #1b1b1b;
 }
-  
-  /* Add a color to the active/current link */
 .navbar a:active {
     background-color: rgb(125, 47, 177);
     color: rgb(152, 250, 177);
     cursor: pointer;
+
 }
+
+
 #welcomeDiv{
     margin-top: 3%;
-    /* margin-left: 15%; */
     background-image: url(https://pousta.com/wp-content/uploads/2017/01/pacman.jpg); 
     align-items: center;
     margin-bottom:10%; 
-    /* bottom: 100px; */
     height: 50%;
 
   /* Position and center the image to scale nicely on all screens */
@@ -111,23 +112,84 @@ body {
     background-image: url(background_login.jpeg); 
     background-size: 135px 60px;
     padding: 20px 40px;
+    transition-delay: 2s;
     color: #ffffffbe;
 }
-  
-  /* Add a color to the active/current link */
 #welcomeDiv a:active {
     background-color: rgb(125, 47, 177);
     color: rgb(152, 250, 177);
     cursor: pointer;
+    transition-delay: 2s;
 }
 headline{
-    font-family:Calibri, 'Trebuchet MS', sans-serif;
+    font-family:"calibri",'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     font-size: 84px;
     text-align: center;
-    text-shadow: 1px 1px 1px rgb(206, 45, 179);
-
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
+    
 }
 
-/* Change background on mouse-over */
 
+#loginDiv{
+
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/691/291/711/video-games-pac-man-mash-ups-tron-wallpaper-preview.jpg);
+  /* Control the height of the image */
+    min-height: 750px;
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 350px;
+    padding: 16px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+  /* Set a style for the submit button */
+.btn {
+    background-color: #8f2ead;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
   
+.btn:hover {
+    opacity: 1;
+}
+Secline{
+    font-family:"calibri",'Trebuchet MS', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 68px;
+    text-align: center;
+    color: rgb(36, 34, 34);
+    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
+    
+}
