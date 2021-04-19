@@ -1,6 +1,11 @@
 /* #welcomeDiv{display: ;} */
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
+    
     margin: 0;
     margin-top: 50px; /* Add a top margin to avoid content overlay */
     /* background-image: url(background_Pacman.png); */
@@ -34,69 +39,95 @@ body {
 .navbar a {
     color: #999;
     background: rgba(0, 0, 0, 0.5);
-    padding: 20px 35px;
-    font-size: 18px;
+    padding: 15px 17px;
+    font-size: 20px;
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-left: 30px;
+    margin-left: 15px;
     margin-top: 50px;
     text-align: center;
     position: relative;
     bottom: 15px;
     
 }
-
-body
-{
-    /* background-image: linear-gradient(to right,rgb(88, 244, 255),white); */
-}
-#welcomeDiv{
-
-    margin-top: 3%;
-    /* margin-left: 15%; */
-    background-image: url(https://pousta.com/wp-content/uploads/2017/01/pacman.jpg); 
-    background-repeat: no-repeat;
-    background-size: 100% ;
-    
-    
-}
-#welcomeDiv a{
-    
-    color: #999;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px 35px;
-    font-size: 18px;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-left: 30px;
-    margin-top: 50px;
-    text-align: center;
-    position: relative;
-    bottom: 15px;
-}
-headline{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 50px;
-    text-align: center;
-    text-shadow: 1px 1px 1px white;
-
-}
-
-/* Change background on mouse-over */
 .navbar a:hover {
     border: none;
     /* background: rgba(0, 0, 0, 0.4); */
     background: #fff;
-    padding: 35px 40px;
+    padding: 20px 17px;
     color: #1b1b1b;
 }
   
   /* Add a color to the active/current link */
 .navbar a:active {
-    background-color: rgb(206, 230, 238);
-    color: gold;
+    background-color: rgb(125, 47, 177);
+    color: rgb(152, 250, 177);
     cursor: pointer;
 }
+#welcomeDiv{
+    margin-top: 3%;
+    /* margin-left: 15%; */
+    background-image: url(https://pousta.com/wp-content/uploads/2017/01/pacman.jpg); 
+    align-items: center;
+    margin-bottom:10%; 
+    /* bottom: 100px; */
+    height: 50%;
+
+  /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+#welcomeDiv a{
+    color: #999;
+    background: rgba(37, 37, 37, 0.445);
+    padding: 20px 40px;
+    font-size: 18px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 100px;
+    margin-top: 50px;
+    /* margin-bottom: 0px; */
+    text-align: center;
+    bottom: 80px;
+    position: relative;
+}
+
+#welcomeDiv a:hover {
+    background: rgba(73, 73, 73, 0.664);
+    padding: 20px 40px;
+    color: #ffffffbe;
+}
+#welcomeDiv #rawd:hover {
+    background-image: url(background_registrationbutton.jpeg); 
+    background-size: 210px 60px;
+    padding: 20px 40px;
+    color: #ffffffbe;
+}
+#welcomeDiv #lawd:hover {
+    background-image: url(background_login.jpeg); 
+    background-size: 135px 60px;
+    padding: 20px 40px;
+    color: #ffffffbe;
+}
+  
+  /* Add a color to the active/current link */
+#welcomeDiv a:active {
+    background-color: rgb(125, 47, 177);
+    color: rgb(152, 250, 177);
+    cursor: pointer;
+}
+headline{
+    font-family:Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 84px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgb(206, 45, 179);
+
+}
+
+/* Change background on mouse-over */
+
   
