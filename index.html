@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="jquery-1.10.2.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
@@ -35,27 +38,27 @@
 
 		<div id="registrationDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 60, 60, 0.897);"><b>Join Us!</b></headline>
-			<form action="/action_page.php" class="container">
+			<form id="regform" class="container" method ="POST">
 				
 				<secLine>Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
-				<input type="text" placeholder="Enter User Name" name="userName" required>
+				<input id = "i_username" type="text" placeholder="Enter User Name" name="userName" required>
 			
 				<label for="psw"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" required>
+				<input id = "i_password" type="password" placeholder="Enter Password" name="psw" required>
 			
 				<label for="fullName"><b>Full Name</b></label>
-				<input type="text" placeholder="Enter Full Name" name="fullName" required>
+				<input id = "i_fullname" type="text" placeholder="Enter Full Name" name="fullName" required>
 
 				<label for="email"><b>Email</b></label>
-				<input type="email" placeholder="Enter Email" name="email" required>
+				<input id = "i_email" type="email" placeholder="Enter Email" name="email" required>
 
 				
 				<label for="birthDate"><b>select your birth date</b></label>
-				<input type="date" id="birthday" name="birthday">
+				<input id = "i_birthdate" type="date" id="birthday" name="birthday">
 
-				<button type="submit" class="btn">Sign Up!</button>
+				<button id = "register_b" type="submit" class="btn" >Sign Up!</button>
 			</form>
 		</div>
 
@@ -71,14 +74,14 @@
 				<label for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
 			
-				<button type="submit" class="btn">Login!</button>
+				<button id = "login_b" type="submit" class="btn" onmousedown="togVis('settingsDiv')">Login!</button>
 			</form>
 		</div>
 
 		<div id="settingsDiv" style="display: none;">
 			<headline ><b>How To Play</b></headline>
 			<p>
-				With Pacman you really get all of that. The idea here is that you are the hero in a maze and you have to eliminate all the enemies as fast as possible. 
+				The idea here is that you are the hero in a maze and you have to eliminate all the enemies as fast as possible. 
 				You must do that as quickly as you can, otherwise you will lose the game and you definitely want to avoid such a thing as much as possible.
 				<br><br>
 				The thing to keep in mind about Pacman is that you have to collect all the bubbles on the game board in order to complete the game.
@@ -210,7 +213,11 @@
 	</footer>
 	<script type = "text/javascript">
 	let currDiv = 'welcomeDiv';
-	
+	let k_user = [];
+	k_user["username"] = "k";
+	k_user["password"] = "k";
+	let users = [];
+	users.push(k_user);
 	function togVis(divID)
 	{
 		setTimeout(function()
@@ -224,6 +231,97 @@
 		
 	}
 	
-
+	
+	$("#regform").on("submit",function(event){
+		
+		var username = $("#i_username").val();
+		var password = $("#i_password").val();
+		var fullname =$("#i_fullname").val();
+		var email = $("#i_email").val();
+		var date = $("#i_birthdate").val();
+		var errs = Validate(username,password,fullname,email,date);
+		if(errs.length > 0)
+		{
+			window.alert(errs.join('\n'));
+		}
+		else
+		{
+			user = [];
+			user["username"] = username;
+			user["password"] = password;
+			user["fullname"] = fullname;
+			user["email"] = email;
+			user["birthday"] = new Date(date);
+			users.push(user);
+		}
+		event.preventDefault();
+	}
+	);
+	
+	
+	</script>
+	<script type = "text/javascript">
+	function Validate(username,password,fullname,email,date)
+	{
+		errors = [];
+		var let_num_p = /^[a-zA-Z0-9]*$/;
+		var let_p= /^[a-zA-Z]+\s[a-zA-Z]+$/;
+		var mail_p = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		
+		if(!let_num_p.test(username))
+		{
+			errors.push("username must contain only letters or numbers");
+		}
+		if(username.length < 6)
+		{
+			errors.push("username must be at least 6 characters long")
+		}
+		for(var i = 0 ; i <users.length; i++ )
+		{
+			if(username == users[i]["username"])
+			{
+				errors.push("username already exists");
+				
+			}
+		}
+		
+		if(!let_num_p.test(password))
+		{
+			errors.push("password must contain only letters or numbers");
+		}
+		if(password.length < 6)
+		{
+			errors.push("password must be at least 6 characters long")
+		}
+		
+		
+		if(!let_p.test(fullname))
+		{
+			errors.push("full name must only contain letters with a space between the first and the last name");
+		}
+		
+		if(!mail_p.test(email))
+		{
+			errors.push("email must be in proper format");
+		}
+		
+		var today = new Date();
+		// window.alert(date);
+		// window.alert(today);
+		if(date == "")
+		{
+			errors.push("must pick a date")
+		}
+		else
+		{
+			date2 = new Date(date);
+			if(date2 > today)
+			{
+				errors.push("birthdate can't be in the future");
+			}
+		}
+		return errors;
+		
+	}
 	</script>
 </html>
