@@ -69,12 +69,17 @@
 	let currDiv = 'welcomeDiv';
 	function togVis(divID)
 	{
-		if(document.getElementById(divID).style.display == 'block')
+		setTimeout(function()
+		{if(document.getElementById(divID).style.display == 'block')
 			{return;}
+		
 		
 		document.getElementById(currDiv).style.display = 'none';
 		document.getElementById(divID).style.display = 'block';
-		currDiv = divID;
+		currDiv = divID;}, 300,divID);
+		
 	}
+	
+
 	</script>
 </html>
