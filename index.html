@@ -49,7 +49,7 @@
 				<input id = "i_reg_password" type="password" placeholder="Enter Password" name="psw" required>
 			
 				<label for="fullName"><b>Full Name</b></label>
-				<input id = "i_regfullname" type="text" placeholder="Enter Full Name" name="fullName" required>
+				<input id = "i_reg_fullname" type="text" placeholder="Enter Full Name" name="fullName" required>
 
 				<label for="email"><b>Email</b></label>
 				<input id = "i_reg_email" type="email" placeholder="Enter Email" name="email" required>
@@ -241,15 +241,16 @@
 	
 	$("#regform").on("submit",function(event){
 		
-		var username = $("#i_username").val();
-		var password = $("#i_password").val();
-		var fullname =$("#i_fullname").val();
-		var email = $("#i_email").val();
-		var date = $("#i_birthdate").val();
+		var username = $("#i_reg_username").val();
+		var password = $("#i_reg_password").val();
+		var fullname =$("#i_reg_fullname").val();
+		var email = $("#i_reg_email").val();
+		var date = $("#i_reg_birthdate").val();
 		var errs = Validate_reg(username,password,fullname,email,date);
 		if(errs.length > 0)
 		{
 			window.alert(errs.join('\n'));
+			event.preventDefault();
 		}
 		else
 		{
@@ -260,10 +261,10 @@
 			user["email"] = email;
 			user["birthday"] = new Date(date);
 			users.push(user);
-			window.alert("seccessfull registrtion!");
+			window.alert("successful registrtion!");
 			$("#regform")[0].reset()
 		}
-		event.preventDefault();
+		
 	}
 	);
 	
@@ -282,10 +283,7 @@
 		{
 			errors.push("Username must contain only letters and numbers.");
 		}
-		// if(username.length < 6)
-		// {
-		// 	errors.push("Username must be at least 6 characters long")
-		// }
+		
 		for(var i = 0 ; i <users.length; i++ )
 		{
 			if(username == users[i]["username"])
@@ -335,8 +333,9 @@
 	}
 	</script>
 
-	<script>
+	<script type = "text/javascript">
 	$("#logform").on("submit",function(event){
+		event.preventDefault();
 		var found= false;
 		var username = $("#i_log_username").val();
 		var password = $("#i_log_password").val();
@@ -350,14 +349,14 @@
 		});
 		if(found==true){
 			window.alert("Welcome Back!");
-			$("#lopform")[0].reset()
+			$("#logform")[0].reset()
 			togVis('settingsDiv');
 		}
 		else{
 			window.alert("username or password incorret.");
-			$("#lopform")[0].reset()
+			$("#logform")[0].reset()
 		}
-		event.preventDefault();
+		
 	});
 	</script>
 </html>
