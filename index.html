@@ -43,38 +43,40 @@
 				<secLine>Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
-				<input id = "i_username" type="text" placeholder="Enter User Name" name="userName" required>
+				<input id = "i_reg_username" type="text" placeholder="Enter User Name" name="userName" required>
 			
 				<label for="psw"><b>Password</b></label>
-				<input id = "i_password" type="password" placeholder="Enter Password" name="psw" required>
+				<input id = "i_reg_password" type="password" placeholder="Enter Password" name="psw" required>
 			
 				<label for="fullName"><b>Full Name</b></label>
-				<input id = "i_fullname" type="text" placeholder="Enter Full Name" name="fullName" required>
+				<input id = "i_regfullname" type="text" placeholder="Enter Full Name" name="fullName" required>
 
 				<label for="email"><b>Email</b></label>
-				<input id = "i_email" type="email" placeholder="Enter Email" name="email" required>
+				<input id = "i_reg_email" type="email" placeholder="Enter Email" name="email" required>
 
 				
 				<label for="birthDate"><b>select your birth date</b></label>
-				<input id = "i_birthdate" type="date" id="birthday" name="birthday">
+				<input id = "i_reg_birthdate" type="date" id="birthday" name="birthday">
 
 				<button id = "register_b" type="submit" class="btn" >Sign Up!</button>
+				<button class = "btn" type="reset" value="Reset">Reset</button>
 			</form>
 		</div>
 
 
 		<div id="loginDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(60, 120, 248, 0.897);"><b>Welcome Back!</b></headline>
-			<form action="/action_page.php" class="container">
+			<form id="logform"  class="container">
 				<secLine>Login</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
-				<input type="text" placeholder="Enter User Name" name="userName" required>
+				<input id = "i_log_username" type="text" placeholder="Enter User Name" name="userName" required>
 			
 				<label for="psw"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" required>
+				<input id = "i_log_password" type="password" placeholder="Enter Password" name="psw" required>
 			
-				<button id = "login_b" type="submit" class="btn" onmousedown="togVis('settingsDiv')">Login!</button>
+				<button id = "login_b" type="submit" class="btn">Login!</button>
+				<button class = "btn" type="reset" value="Reset">Reset</button>
 			</form>
 		</div>
 
@@ -216,8 +218,13 @@
 	let k_user = [];
 	k_user["username"] = "k";
 	k_user["password"] = "k";
-	let users = [];
+	k_user["fullname"] = "k k";
+	k_user["email"] = "k@k.k";
+	k_user["birthday"] = "01/01/2021";
+	
+	let users = []; // [username, password, fullname, email, birthday]
 	users.push(k_user);
+	let active_user = null;
 	function togVis(divID)
 	{
 		setTimeout(function()
@@ -239,7 +246,7 @@
 		var fullname =$("#i_fullname").val();
 		var email = $("#i_email").val();
 		var date = $("#i_birthdate").val();
-		var errs = Validate(username,password,fullname,email,date);
+		var errs = Validate_reg(username,password,fullname,email,date);
 		if(errs.length > 0)
 		{
 			window.alert(errs.join('\n'));
@@ -253,6 +260,8 @@
 			user["email"] = email;
 			user["birthday"] = new Date(date);
 			users.push(user);
+			window.alert("seccessfull registrtion!");
+			$("#regform")[0].reset()
 		}
 		event.preventDefault();
 	}
@@ -261,48 +270,49 @@
 	
 	</script>
 	<script type = "text/javascript">
-	function Validate(username,password,fullname,email,date)
+	function Validate_reg(username,password,fullname,email,date)
 	{
 		errors = [];
-		var let_num_p = /^[a-zA-Z0-9]*$/;
-		var let_p= /^[a-zA-Z]+\s[a-zA-Z]+$/;
+		var let_username_p = /^[a-zA-Z0-9]*$/;
+		var let_password_p = /^[0-9]*[a-zA-Z]+[0-9]+[a-zA-Z0-9]*$/;
+		var let_p= /^[a-zA-Z]+\s[a-zA-Z]+/;
 		var mail_p = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		
-		if(!let_num_p.test(username))
+		if(!let_username_p.test(username))
 		{
-			errors.push("username must contain only letters or numbers");
+			errors.push("Username must contain only letters and numbers.");
 		}
-		if(username.length < 6)
-		{
-			errors.push("username must be at least 6 characters long")
-		}
+		// if(username.length < 6)
+		// {
+		// 	errors.push("Username must be at least 6 characters long")
+		// }
 		for(var i = 0 ; i <users.length; i++ )
 		{
 			if(username == users[i]["username"])
 			{
-				errors.push("username already exists");
+				errors.push("This username is unavailable.");
 				
 			}
 		}
 		
-		if(!let_num_p.test(password))
+		if(!let_password_p.test(password))
 		{
-			errors.push("password must contain only letters or numbers");
+			errors.push("Password must contain only english letters and numbers, at least one number AND one letter.");
 		}
 		if(password.length < 6)
 		{
-			errors.push("password must be at least 6 characters long")
+			errors.push("Password must be at least 6 characters long.")
 		}
 		
 		
 		if(!let_p.test(fullname))
 		{
-			errors.push("full name must only contain letters with a space between the first and the last name");
+			errors.push("Full name must only contain english letters with a space in between.");
 		}
 		
 		if(!mail_p.test(email))
 		{
-			errors.push("email must be in proper format");
+			errors.push("Email must be in proper format: name@examle.com .");
 		}
 		
 		var today = new Date();
@@ -310,18 +320,44 @@
 		// window.alert(today);
 		if(date == "")
 		{
-			errors.push("must pick a date")
+			errors.push("Must pick a birthdate.")
 		}
 		else
 		{
 			date2 = new Date(date);
 			if(date2 > today)
 			{
-				errors.push("birthdate can't be in the future");
+				errors.push("Birthdate can't be in the future ;). ");
 			}
 		}
 		return errors;
 		
 	}
+	</script>
+
+	<script>
+	$("#logform").on("submit",function(event){
+		var found= false;
+		var username = $("#i_log_username").val();
+		var password = $("#i_log_password").val();
+		users.forEach(u => {
+			if(u['username'].valueOf()==username.valueOf() && u['password'].valueOf()==password.valueOf() ){
+				found=true;
+				active_user=u;
+				// break;
+			}
+			
+		});
+		if(found==true){
+			window.alert("Welcome Back!");
+			$("#lopform")[0].reset()
+			togVis('settingsDiv');
+		}
+		else{
+			window.alert("username or password incorret.");
+			$("#lopform")[0].reset()
+		}
+		event.preventDefault();
+	});
 	</script>
 </html>
