@@ -14,7 +14,7 @@ body {
     /* background-image: url(ghost.jpeg); */
 
 
-    background-image: url(Screenshot_1.png);
+    background-image: url(pictures/Screenshot_1.png);
     background-repeat: repeat;
     background-size: 150px ;
 
@@ -48,7 +48,7 @@ Secline{
     
 }
 
-p{
+.textinfo{
     font-family:"calibri";
     letter-spacing: 2px;
     font-size: 14px;
@@ -137,13 +137,13 @@ div{
     position: relative;
 }
 #welcomeDiv #rawd:hover {
-    background-image: url(background_registrationbutton.jpeg); 
+    background-image: url(pictures/background_registrationbutton.jpeg); 
     background-size: 210px 60px;
     padding: 20px 40px;
     color: #ffffffe5;
 }
 #welcomeDiv #lawd:hover {
-    background-image: url(background_loginbutton.jpeg); 
+    background-image: url(pictures/background_loginbutton.jpeg); 
     background-size: 135px 60px;
     padding: 20px 40px;
     /* transition-delay: 2s; */
@@ -187,19 +187,34 @@ div{
 }
   /* Set a style for the submit button */
 #registrationDiv .btn {
-    background-color: #8f2ead;
+    background: rgba(216, 23, 23, 0.986);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* margin-bottom: 0px; */
+    text-align: center;
+    bottom: 80px;
     color: white;
     padding: 16px 20px;
     border: none;
+
     cursor: pointer;
     width: 100%;
     margin-bottom: 8px;
     opacity: 0.9;
 }
 #registrationDiv .btn:hover {
-    opacity: 1;
+    background-color: #e76868;  
+    background-size: 100% 97%;
+    /* padding: 20px 40px; */
+    color: #ffffffe5;
 }
 
+#registrationDiv .btn:hover {
+    opacity: 1;
+}
+#registrationDiv Secline{
+    text-shadow: ;
+}
 
 /* Login Div */
 #loginDiv{
@@ -232,15 +247,27 @@ div{
 }
 /* Set a style for the submit button */
 #loginDiv .btn {
-    background-color: #8f2ead;
+    background: rgba(23, 90, 216, 0.986);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* margin-bottom: 0px; */
+    text-align: center;
+    bottom: 80px;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
-    opacity: 0.9;
     margin-bottom: 8px;
+    opacity: 0.9;
 }
+#loginDiv .btn:hover{
+    background-color: #5984fa;  
+    background-size: 100% 97%;
+    /* padding: 20px 40px; */
+    color: #ffffffe5;
+}
+
 #loginDiv .btn:hover {
     opacity: 1;
 }
@@ -251,23 +278,21 @@ div{
   /* Control the height of the image */
     min-height: 800px;
 }
-.arrow{
-    height: 50px;
-    width: 50px;
-}
+
 #settingsDiv Secline{
-    color: ivory;
+    /* color: ivory; */
     font-size: 36px;
 }
-#settingsDiv .container {
-    position: relative;
+#settingsDiv .settings_container {
+    /* position: relative; */
     right: 0;
-    max-width: 500px;
+    /* max-width: 500px; */
     padding: 16px;
-    background-color: rgba(255, 255, 255, 0.82);
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 16px;
     
 }
-#settingsDiv input[type=text]:focus, input[type=password]:focus {
+#settingsDiv input[type=text]:focus, input[type=number]:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -285,14 +310,28 @@ div{
 #settingsDiv .btn:hover {
     opacity: 1;
 }
+#settingsDiv input{
+    width: 50px;
+}
+#settingsDiv .arrow{
+    width: 50px;
+}
+#settingsDiv .i_arrow{
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+#left_arrow, #left_key ,#down_arrow, #down_key{
+    margin-right: 100px;
+}
+
 /* <about Div> */
 #aboutDiv{
     background-image: url(https://wallpaperaccess.com/full/656405.jpg);
     min-height: 850px;
     
 }
-
-
 
 /* footer */
 footer{

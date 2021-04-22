@@ -40,7 +40,7 @@
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 60, 60, 0.897);"><b>Join Us!</b></headline>
 			<form id="regform" class="container" method ="POST">
 				
-				<secLine>Registration</secLine>
+				<secLine style="text-shadow: 3px 3px 3px rgba(250, 113, 113, 0.897);">Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
 				<input id = "i_reg_username" type="text" placeholder="Enter User Name" name="userName" required>
@@ -59,7 +59,7 @@
 				<input id = "i_reg_birthdate" type="date" id="birthday" name="birthday">
 
 				<button id = "register_b" type="submit" class="btn" >Sign Up!</button>
-				<button class = "btn" type="reset" value="Reset">Reset</button>
+				<button id="reset_b" class = "btn" type="reset" value="Reset">Reset</button>
 			</form>
 		</div>
 
@@ -67,7 +67,7 @@
 		<div id="loginDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(60, 120, 248, 0.897);"><b>Welcome Back!</b></headline>
 			<form id="logform"  class="container">
-				<secLine>Login</secLine>
+				<secLine style="text-shadow: 3px 3px 3px rgba(116, 158, 248, 0.897);">Login</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
 				<input id = "i_log_username" type="text" placeholder="Enter User Name" name="userName" required>
@@ -82,7 +82,7 @@
 
 		<div id="settingsDiv" style="display: none;">
 			<headline ><b>How To Play</b></headline>
-			<p>
+			<p class="textinfo">
 				The idea here is that you are the hero in a maze and you have to eliminate all the enemies as fast as possible. 
 				You must do that as quickly as you can, otherwise you will lose the game and you definitely want to avoid such a thing as much as possible.
 				<br><br>
@@ -93,33 +93,62 @@
 				You never get to have the same gameplay, even if the game is quite distinct and unique. It’s all about being creative and having fun here, which is exactly what you need.
 			</p>
 
-			<form id="settingform" class="container">
-				<secLine ><b>choose your keys:</b></secLine>
+			<form id="settingform" class="settings_container">
+				<secLine ><b>choose your game settings:</b></secLine>
 				<br>
-				<label for="up_key"><img class="arrow" src="https://png.pngtree.com/png-vector/20190419/ourmid/pngtree-vector-up-arrow-icon-png-image_956434.jpg" alt=""></label>
-				<input id = "up_key" type="text" placeholder="up" name="up_key" required>
-			
-				<label for="down_key"><img class="arrow" src="https://www.citypng.com/public/uploads/preview/short-black-down-arrow-11581593509vqidb686yn.png" alt=""></label>
-				<input id = "down_key" type="text" placeholder="down" name="down_key" required>
-
-				<label for="right_key"><img class="arrow" src="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-right-arrow-icon-png-image_4231911.jpg" alt=""></label>
-				<input id = "right_key" type="text" placeholder="right" name="right_key" required>
-
-				<label for="left_key"><img class="arrow" src="https://img.favpng.com/11/7/5/left-arrow-png-favpng-LiK7APsL0NkVFSndmnMCZxtJV.jpg" alt=""></label>
-				<input id = "left_key" type="text" placeholder="left" name="left_key" required>
-			
-				<label for="n_snack">number of snacks: (between 50 and 90)</label>
-				<input type="number" id="n_snack" name="n_snack" min="50" max="90" value="70" onKeyDown="return false">
-				<br><br>
-				<button id = "login_b" type="submit" class="btn">Login!</button>
-				<button class = "btn" type="reset" value="Reset">Reset</button>
+				<p>
+					<p style="font-size: larger;"><b>choose how you would like to move: (default is with the arrows keys):</b></p>
+					<p>
+						<label for="up_key"><img class="arrow" src="pictures/arrows/up.png" alt=""></label>
+						<br>
+						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593;  required>
+					</p>
+					<p>
+						<label id="left_arrow" for="left_key"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
+						<label  id="down_arrow" for="down_key"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
+						<label for="right_key"><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
+						<br>			
+						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key"  value=&#8592; required>
+						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595; required>
+						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594; required>
+					</p>
+					<br>
+				</p>
+				<p style="text-align: left;font-size: larger;">
+					<label for="n_snack">choose the number of snacks (between 50 and 90): </label>
+					<input type="number" id="n_snack" name="n_snack" min="50" max="90" value="70" onKeyDown="return false">
+					<br><br>
+					<label for="n_snackColor"><u>choose the color of the snacks, notice the points each one gives you: </u></label>
+					<br>
+					<labal>snacks in the </labal>
+					<input type="color" id="c_5p" name="favcolor" value="#0000ff">
+					<labal> color will give you 5 points!</labal>
+					<br>
+					<labal>snacks in the </labal>
+					<input type="color" id="c_15p" name="favcolor" value="#ff9900">
+					<labal> color will give you 15 points!</labal>
+					<br>
+					<labal>snacks in the </labal>
+					<input type="color" id="c_25p" name="favcolor" value="#ff0000">
+					<labal> color will give you 25 points!</labal>
+					<br><br>
+					<label for="n_snack">choose the number of seconds for the game (minimum 60s): </label>
+					<input type="number" id="n_gameSeconds" name="n_snack" min="60" value="60" >
+					<br><br>
+					<label for="n_snack">choose the number of ghosts in the game (between 1 and 4): </label>
+					<input type="number" id="n_ghosts" name="n_snack" min="1" max="4" value="4" onKeyDown="return false">
+					<br><br>
+					<button id="settings_submit_b" type="submit" class="btn">Start Game!</button>
+					<button id="settings_random_b" class = "btn" type="submit" value="Reset" onclick="generateRandomSettings(event);">Generate Random</button>
+					<button class = "btn" type="reset" value="Reset">Reset</button>
+				</p>
 			</form>
 
 		</div>
 		
 		<div id="aboutDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 245, 60, 0.897);"><b>About PacMan</b></headline>
-			<p>
+			<p class="textinfo">
 				Pacman is a fun game that has been around for 4 decades(!!). Created in 1980, the idea behind this game is super simple. And that’s maybe the major reason why it is so popular even today, many more decades after its inception.
 				<Br><BR>
 				The thing that a lot of people like about action and arcade games is that they are always fun and they bring in a new perspective on the way you play.
@@ -382,4 +411,49 @@
 		
 	});
 	</script>
+
+	<script type = "text/javascript">
+		function generateRandomSettings(event) {
+			event.preventDefault();
+
+			document.getElementById("up_key").value="";
+			document.getElementById("down_key").value="&#8592";
+			document.getElementById("right_key").value="&#8595";
+			document.getElementById("left_key").value= "2190";
+
+			var numberSnacks = Math.round( Math.random()*20 +50 );
+			var numberSeconds = Math.round(Math.random()*60 +60);
+			var numberGhosts = Math.round(Math.random()*3 +1);
+			
+
+
+			var letters = '0123456789ABCDEF';
+			var color5 = '#';
+			var color15 = '#';
+			var color25 = '#';
+			for (var i = 0; i < 6; i++) {
+				color5 += letters[Math.floor(Math.random() * 16)];
+				color15 += letters[Math.floor(Math.random() * 16)];
+				color25 += letters[Math.floor(Math.random() * 16)];
+ 			}
+
+
+			// var colors = ["#ffffff","#c0c0c0","#808080","#000000","#ff0000","#800000","#ffff00","#808000","#00ff00","#008000","#00ffff","#008080","#0000ff","#000080","#ff00ff","#800080"];
+			// var c_5points = Math.round( Math.random()* colors.length);
+			// var c_15points = Math.round( Math.random()* colors.length);
+			// var c_25points = Math.round( Math.random()* colors.length);
+
+			document.getElementById("n_snack").value = numberSnacks;
+			document.getElementById("n_gameSeconds").value = numberSeconds;
+			document.getElementById("n_ghosts").value = numberGhosts;
+			document.getElementById("c_5p").value =color5 ;
+			document.getElementById("c_15p").value =color15;
+			document.getElementById("c_25p").value = color25;
+			
+			
+		}
+	
+
+	</script>
+
 </html>
