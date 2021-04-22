@@ -81,6 +81,7 @@ function Start() {
 		false
 	);
 	interval = setInterval(UpdatePosition, 250);
+	
 }
 
 function findRandomEmptyCell(board) {
