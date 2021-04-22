@@ -6,13 +6,21 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var up;
+var down;
+var left;
+var right;
 
-$(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
-});
+function setKeys(_up,_down,_left,_right)
+{
+	up =_up;
+	down = _down;
+	left = _left;
+	right = _right;
+}
 
 function Start() {
+	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -58,14 +66,17 @@ function Start() {
 	addEventListener(
 		"keydown",
 		function(e) {
-			keysDown[e.keyCode] = true;
+			keysDown[String.fromCharCode(e.keyCode)] = true;
+			
+			
 		},
 		false
 	);
 	addEventListener(
 		"keyup",
 		function(e) {
-			keysDown[e.keyCode] = false;
+			keysDown[String.fromCharCode(e.keyCode)] = false;
+			
 		},
 		false
 	);
@@ -83,16 +94,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[up]) {//up
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[down]) {//down
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[left]) {//left
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[right]) {//right
 		return 4;
 	}
 }
