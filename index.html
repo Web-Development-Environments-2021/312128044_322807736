@@ -233,7 +233,7 @@
 			user["email"] = email;
 			user["birthday"] = new Date(date);
 			users.push(user);
-			window.alert("successful registrtion!");
+			window.alert("successful registration!");
 			$("#regform")[0].reset()
 		}
 		
@@ -342,6 +342,10 @@
 		var left = $('#left_key').val();
 		var right = $('#right_key').val();
 		var format = /^[a-zA-Z0-9]*$/;
+		var food = $('#n_snack').val();
+		var s = $('#c_5p').val();
+		var m = $("#c_15p").val();
+		var h = $('#c_25p').val();
 		
 		if(up == "\u2191")
 		{
@@ -360,7 +364,8 @@
 			down = String.fromCharCode(40);
 		}
 		setKeys(up,down,left,right);
-		
+		setFood(food);
+		setColors(s,m,h)
 		Start();
 		togVis("gameDiv");
 	
