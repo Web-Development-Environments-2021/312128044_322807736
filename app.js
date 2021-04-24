@@ -101,6 +101,7 @@ function Start() {
 						pacman_remain--;
 						board[i][j] = 2;
 						flag = true;
+						
 					} 
 					
 				}
