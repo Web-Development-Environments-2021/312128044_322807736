@@ -93,7 +93,7 @@
 				You never get to have the same gameplay, even if the game is quite distinct and unique. It’s all about being creative and having fun here, which is exactly what you need.
 			</p>
 
-			<form id="settingform" class="settings_container">
+			<form id="settingform" class="settings_container" autocomplete="off">
 				<secLine ><b>choose your game settings:</b></secLine>
 				<br>
 				<p>
@@ -101,16 +101,20 @@
 					<p>
 						<label for="up_key"><img class="arrow" src="pictures/arrows/up.png" alt=""></label>
 						<br>
-						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593;  required>
+						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593; onkeydown="displayPressed(event,this)" onclick="document.getElementById('up_key').value = ''"
+						 required>
 					</p>
 					<p>
 						<label id="left_arrow" for="left_key"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
 						<label  id="down_arrow" for="down_key"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
 						<label for="right_key"><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
 						<br>			
-						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key"  value=&#8592; required>
-						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595; required>
-						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594; required>
+						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key"  value=&#8592; onkeydown="displayPressed(event,this)"  onclick="document.getElementById('left_key').value = ''"
+ 						required>
+						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595; onkeydown="displayPressed(event,this)" onclick="document.getElementById('down_key').value = ''"
+						required>
+						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594; onkeydown="displayPressed(event,this)" onclick="document.getElementById('right_key').value = ''"
+						required>
 					</p>
 					<br>
 				</p>
@@ -338,16 +342,27 @@
 		var left = $('#left_key').val();
 		var right = $('#right_key').val();
 		var format = /^[a-zA-Z0-9]*$/;
-		if(!format.test(up)||!format.test(down)||!format.test(left)||!format.test(right))
+		
+		if(up == "\u2191")
 		{
-			window.alert("keys can only be numbers and letters you stupid mother fucker")
+			up = String.fromCharCode(38);
 		}
-		else{
-			setKeys(up.toUpperCase(),down.toUpperCase(),left.toUpperCase(),right.toUpperCase());
+		if(left == "\u2190")
+		{
+			left = String.fromCharCode(37);
+		}
+		if(right == "\u2192")
+		{
+			right = String.fromCharCode(39);
+		}
+		if(down == "\u2193")
+		{
+			down = String.fromCharCode(40);
+		}
+		setKeys(up,down,left,right);
+		
 		Start();
 		togVis("gameDiv");
-		}
-		
 	
 });
 	 </script>
@@ -357,10 +372,10 @@
 		function generateRandomSettings(event) {
 			event.preventDefault();
 
-			document.getElementById("up_key").value="";
-			document.getElementById("down_key").value="&#8592";
-			document.getElementById("right_key").value="&#8595";
-			document.getElementById("left_key").value= "2190";
+			document.getElementById("up_key").value="\u2191";
+			document.getElementById("down_key").value="\u2193";
+			document.getElementById("right_key").value="\u2192";
+			document.getElementById("left_key").value= "\u2190";
 
 			var numberSnacks = Math.round( Math.random()*20 +50 );
 			var numberSeconds = Math.round(Math.random()*60 +60);
@@ -393,6 +408,35 @@
 	
 
 	</script>
-
+	<script type = "text/javascript" >
+	function displayPressed(e,textbox)
+	{
+		
+		e.preventDefault();
+		var val;
+		if(e.keyCode == 38)//up
+		{
+			val = "\u2191";
+		}
+		else if(e.keyCode == 37)//left
+		{
+			val = "\u2190";
+		}
+		else if(e.keyCode == 40)//down
+		{
+			val = "\u2193";
+		}
+		else if(e.keyCode == 39)//right
+		{
+			val = "\u2192";
+		}
+		else
+		{
+			val = String.fromCharCode(e.keyCode);
+		}
+		textbox.value = val;
+	}
+	
+	</script>
 
 </html>
