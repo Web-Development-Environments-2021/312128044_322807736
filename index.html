@@ -101,16 +101,16 @@
 					<p>
 						<label for="up_key"><img class="arrow" src="pictures/arrows/up.png" alt=""></label>
 						<br>
-						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593;  required>
+						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593; maxlength="1" required onclick="document.getElementById('up_key').value = ''" onKeyPress="edValueKeyPress()" onKeyUp="edValueKeyPress()">
 					</p>
 					<p>
 						<label id="left_arrow" for="left_key"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
 						<label  id="down_arrow" for="down_key"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
 						<label for="right_key"><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
 						<br>			
-						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key"  value=&#8592; required>
-						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595; required>
-						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594; required>
+						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key" maxlength="1" value=&#8592; onclick="document.getElementById('left_key').value = ''" required>
+						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595;  maxlength="1" onclick="document.getElementById('down_key').value = ''" required>
+						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594;  maxlength="1" onclick="document.getElementById('right_key').value = ''" required>
 					</p>
 					<br>
 				</p>
@@ -357,16 +357,18 @@
 		function generateRandomSettings(event) {
 			event.preventDefault();
 
-			document.getElementById("up_key").value="";
-			document.getElementById("down_key").value="&#8592";
-			document.getElementById("right_key").value="&#8595";
-			document.getElementById("left_key").value= "2190";
+			document.getElementById("up_key").value.innerHTML='&#8593';
+			document.getElementById("down_key").value.innerHTML='&#8592';
+			document.getElementById("right_key").value.innerHTML='&#8595';
+			document.getElementById("left_key").value.innerHTML= '&#2190';
 
 			var numberSnacks = Math.round( Math.random()*20 +50 );
 			var numberSeconds = Math.round(Math.random()*60 +60);
 			var numberGhosts = Math.round(Math.random()*3 +1);
 			
-
+			document.getElementById("n_snack").value = numberSnacks;
+			document.getElementById("n_gameSeconds").value = numberSeconds;
+			document.getElementById("n_ghosts").value = numberGhosts;
 
 			var letters = '0123456789ABCDEF';
 			var color5 = '#';
@@ -377,13 +379,7 @@
 				color15 += letters[Math.floor(Math.random() * 16)];
 				color25 += letters[Math.floor(Math.random() * 16)];
  			}
-
-
-
-
-			document.getElementById("n_snack").value = numberSnacks;
-			document.getElementById("n_gameSeconds").value = numberSeconds;
-			document.getElementById("n_ghosts").value = numberGhosts;
+			
 			document.getElementById("c_5p").value =color5 ;
 			document.getElementById("c_15p").value =color15;
 			document.getElementById("c_25p").value = color25;
@@ -394,5 +390,14 @@
 
 	</script>
 
+	<script type = "text/javascript">
+		function edValueKeyPress() {
+			var edValue = document.getElementById("up_key");
+			var s = edValue.value;
+
+			document.getElementById("up_key").innerText = 'd';
+		}
+		
+	</script>
 
 </html>
