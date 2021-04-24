@@ -331,6 +331,15 @@ div{
     
 }
 
+
+#gameDiv canvas{
+    background-color: rgba(247, 241, 241, 0.781);
+    border-width: 5px;
+    padding: 5px;
+    border-color:  blue;
+    border-style: solid;
+}
+
 /* footer */
 footer{
     background-color: rgba(201, 199, 199, 0.932);
