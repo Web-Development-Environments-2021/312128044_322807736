@@ -101,30 +101,20 @@
 					<p>
 						<label for="up_key"><img class="arrow" src="pictures/arrows/up.png" alt=""></label>
 						<br>
-<<<<<<< HEAD
-						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593; maxlength="1" required onclick="document.getElementById('up_key').value = ''" onKeyPress="edValueKeyPress()" onKeyUp="edValueKeyPress()">
-=======
 						<input id = "up_key" type="text" class="i_arrow" placeholder="up" name="up_key" value=&#8593; onkeydown="displayPressed(event,this)" onclick="document.getElementById('up_key').value = ''"
 						 required>
->>>>>>> ebf0cb9339516af6ea9e369d0092bff855ede2e4
 					</p>
 					<p>
 						<label id="left_arrow" for="left_key"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
 						<label  id="down_arrow" for="down_key"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
 						<label for="right_key"><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
 						<br>			
-<<<<<<< HEAD
-						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key" maxlength="1" value=&#8592; onclick="document.getElementById('left_key').value = ''" required>
-						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595;  maxlength="1" onclick="document.getElementById('down_key').value = ''" required>
-						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594;  maxlength="1" onclick="document.getElementById('right_key').value = ''" required>
-=======
 						<input id = "left_key" type="text" class="i_arrow" placeholder="left" name="left_key"  value=&#8592; onkeydown="displayPressed(event,this)"  onclick="document.getElementById('left_key').value = ''"
  						required>
 						<input id = "down_key" type="text" class="i_arrow" placeholder="down" name="down_key" value=&#8595; onkeydown="displayPressed(event,this)" onclick="document.getElementById('down_key').value = ''"
 						required>
 						<input id = "right_key" type="text" class="i_arrow" placeholder="right" name="right_key" value= &#8594; onkeydown="displayPressed(event,this)" onclick="document.getElementById('right_key').value = ''"
 						required>
->>>>>>> ebf0cb9339516af6ea9e369d0092bff855ede2e4
 					</p>
 					<br>
 				</p>
@@ -416,17 +406,7 @@
 	
 
 	</script>
-<<<<<<< HEAD
-
-	<script type = "text/javascript">
-		function edValueKeyPress() {
-			var edValue = document.getElementById("up_key");
-			var s = edValue.value;
-
-			document.getElementById("up_key").innerText = 'd';
-		}
-		
-=======
+	
 	<script type = "text/javascript" >
 	function displayPressed(e,textbox)
 	{
@@ -455,8 +435,6 @@
 		}
 		textbox.value = val;
 	}
-	
->>>>>>> ebf0cb9339516af6ea9e369d0092bff855ede2e4
-	</script>
+		</script>
 
 </html>
