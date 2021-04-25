@@ -38,8 +38,7 @@
 
 		<div id="registrationDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 60, 60, 0.897);"><b>Join Us!</b></headline>
-			<form id="regform" class="container" method ="POST">
-				
+			<form id="regform" class="container" method ="POST">	
 				<secLine style="text-shadow: 3px 3px 3px rgba(250, 113, 113, 0.897);">Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
@@ -160,18 +159,67 @@
 				
 		</div>
 		
-		<div id="gameDiv" style="display: none;">
-			<div id="score" style = >
-				<label for="lblScore">SCORE:</label>
-				<input id="lblScore" type="text" />
-			</div>
-			<div id="time" >
-				<label for="lblTime">TIME:</label>
-				<input id="lblTime" type="text" />
-			</div>
-			<div id="game" >
-				<canvas id="canvas" height="600" width="600"></canvas>
-			</div>
+		<div id="gameDiv" style="display: none; align-items: center; text-align: center;">
+			<table style="background-color: rgba(255, 255, 255, 0.842);">
+				<th>
+					<div id = score_n_time style="position: relative;">
+						<label style="padding-right:150px ;">Score:</label>
+						<label>Time:</label>
+						<br>			
+						<input id="lblScore" type="text" disabled/>
+						<input id="lblTime" type="text" disabled/>
+					</div>
+					<div id="game" >
+						<canvas id="canvas" height="600" width="600"></canvas>
+					</div>
+				</th>
+				<th style="text-align:left">
+					<p style="padding-left: 80px;">
+						<lable style="padding-left: 15px;" ><img class="arrow" src="pictures/arrows/up.png" alt="" ></label>
+						<br>
+						<input id="val_up" style="width: 80px; text-align: center;" disabled>
+					</p>
+					<p >
+						<label style="padding-right:40px ;"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
+						<label style="padding-right:40px ;"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
+						<label ><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
+						<br>			
+						<input id="val_left" style="width: 80px; text-align: center;" disabled>
+						<input id="val_down" style="width: 80px; text-align: center;" disabled>
+						<input id="val_right" style="width: 80px; text-align: center;" disabled>
+
+					</p>
+					<p style="text-align: left;font-style: normal;">
+						<label>choose the number of snacks: </label>
+						<input id="val_n_snack" style="width: 40px;" disabled>
+						<br><br>
+						<label><u>the color of the different snacks: </u></label>
+						<br>
+						<labal>snacks in the </labal>
+						<input type="color" id="val_c_5p"  disabled>
+						<labal> color will give you 5 points!</labal>
+						<br>
+						<labal>snacks in the </labal>
+						<input type="color" id="val_c_15p" disabled>
+						<labal> color will give you 15 points!</labal>
+						<br>
+						<labal>snacks in the </labal>
+						<input type="color" id="val_c_25p"  disabled>
+						<labal> color will give you 25 points!</labal>
+						<br><br>
+						<label for="n_snack"> number of seconds for the game: </label>
+						<input id="val_n_gameSeconds" style="width: 40px;" disabled>
+						<br><br>
+						<label for="n_snack">number of ghosts in the game: </label>
+						<input id="val_n_ghosts" style="width: 40px;" disabled>
+						
+					</p>
+				</th>
+				<th>
+
+				</th>
+
+			</table>
 		</div>
 	
 	</body>
@@ -184,6 +232,27 @@
 			
 			
 	</footer>
+
+	<script>
+		$("#settingsDiv").on("submit",function(){
+			document.getElementById('val_up').value=document.getElementById('up_key').value;
+			document.getElementById('val_down').value=document.getElementById('down_key').value;
+			document.getElementById('val_left').value=document.getElementById('left_key').value;
+			document.getElementById('val_right').value=document.getElementById('right_key').value;	 
+
+
+			document.getElementById('val_n_snack').value=document.getElementById('n_snack').value;	 
+			document.getElementById('val_c_5p').value=document.getElementById('c_5p').value;	 
+			document.getElementById('val_c_15p').value=document.getElementById('c_15p').value;	 
+			document.getElementById('val_c_25p').value=document.getElementById('c_25p').value;
+			
+			document.getElementById('val_n_gameSeconds').value=document.getElementById('n_gameSeconds').value;
+			document.getElementById('val_n_ghosts').value=document.getElementById('n_ghosts').value;
+			
+			
+		});
+			
+	</script>
 	<script type = "text/javascript">
 
 	let currDiv = 'welcomeDiv';
