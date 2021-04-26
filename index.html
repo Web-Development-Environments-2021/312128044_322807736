@@ -351,7 +351,7 @@
 		
 		if(!mail_p.test(email))
 		{
-			errors.push("Email must be in proper format: name@examle.com .");
+			errors.push("Email must be in proper format: name@example.com .");
 		}
 		
 		var today = new Date();
@@ -366,7 +366,7 @@
 			date2 = new Date(date);
 			if(date2 > today)
 			{
-				errors.push("Birthdate can't be in the future ;). ");
+				errors.push("Birthdate can't be in the future. ");
 			}
 		}
 		return errors;
@@ -415,7 +415,7 @@
 		var s = $('#c_5p').val();
 		var m = $("#c_15p").val();
 		var h = $('#c_25p').val();
-		
+		var n_ghosts =$('#n_ghosts').val();
 		if(up == "\u2191")
 		{
 			up = String.fromCharCode(38);
@@ -432,6 +432,7 @@
 		{
 			down = String.fromCharCode(40);
 		}
+		setGhosts(n_ghosts);
 		setKeys(up,down,left,right);
 		setFood(food);
 		setColors(s,m,h)

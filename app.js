@@ -18,11 +18,26 @@ var food_h;
 var color_s;
 var color_m;
 var color_h;
-<<<<<<< HEAD
-=======
+var n_ghosts;
+var ghosts = [];
+var g_coords = [];
 var lastmove=4;
->>>>>>> aa5f528b9144a4c9656fc4420296dfa5bb3a8a7b
+var pac_x;
+var pac_y;
 
+function setGhosts(ghost)
+{
+	var str = 'pictures/Ghosts/'
+	ghosts[1] = str+'1.png';
+	ghosts[2] = str+'2.png';
+	ghosts[3] = str+'3.png';
+	ghosts[4] = str+'4.png';
+	n_ghosts = ghost;
+	g_coords[1] = [0,0];
+	g_coords[2] = [0,9];
+	g_coords[3] = [9,0];
+	g_coords[4] = [9,9];
+}
 function setKeys(_up,_down,_left,_right)
 {
 	up =_up;
@@ -98,7 +113,7 @@ function Start() {
 				while(!flag)
 				{
 					var randomNum = Math.floor(Math.random()*4+1);
-					console.log(randomNum);
+					
 					if (randomNum  == 1 && food_s>0) {
 						food_s--;
 						food_remain--;
@@ -123,6 +138,8 @@ function Start() {
 						shape.i = i;
 						shape.j = j;
 						pacman_remain--;
+						pac_x = i;
+						pac_y = j;
 						board[i][j] = 2;
 						flag = true;
 						
@@ -133,6 +150,7 @@ function Start() {
 			}
 		}
 	}
+	
 	while (food_remain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1;
@@ -156,7 +174,9 @@ function Start() {
 		},
 		false
 	);
+	
 	interval = setInterval(UpdatePosition, 250);
+	
 	
 }
 
@@ -188,6 +208,8 @@ function GetKeyPressed() {
 
 function Draw(x) {
 	let posibleMove=[1,2,3,4]
+	let g_ind = 1;
+	console.log(g_coords[g_ind][0]+" , " + g_coords[g_ind][1]);
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
@@ -196,7 +218,15 @@ function Draw(x) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
-			if (board[i][j] == 2) {
+			if (i == g_coords[g_ind][0] && j == g_coords[g_ind][1]) {
+				console.log(i+" , "+j)
+				const img = new Image();
+				img.src = ghosts[g_ind];
+				
+				context.drawImage(img,center.x,center.y)
+				g_ind+=1;
+			}
+			else if (board[i][j] == 2) {
 				if(posibleMove.includes(x,0)){
 					drowPacman(center, x);
 				}
@@ -236,6 +266,7 @@ function Draw(x) {
 				context.fillStyle = color_h; //color
 				context.fill();
 			} 
+			
 			else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 25, center.y - 25, 50, 50);
@@ -335,11 +366,12 @@ function UpdatePosition() {
 	}
 
 	board[shape.i][shape.j] = 2;
+	pac_x = shape.i;
+	pac_y = shape.j;
+	UpdateGhosts();
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
-		pac_color = "green";
-	}
+	
 	if (score == scoreWin) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
@@ -347,5 +379,60 @@ function UpdatePosition() {
 		Draw(x);
 	}
 }
+function UpdateGhosts()
+{
+	
+	for( var i = 1; i <= n_ghosts ; i++)
+	{
+		UpdateGhost(i);
+		
+	}
+	
 
+}
+function UpdateGhost(index)
+{
+	var x = g_coords[index][0];
+	var y = g_coords[index][1];
+	var c_check = [[x-1,y],[x+1,y],[x,y-1],[x,y+1]];
+	var dists =[999999,999999,999999,999999];
+	var j = 0;
+	for(c of c_check)
+	{
+		if(checkValid(c[0],c[1]))
+		{
+			dists[j] = calcDistance(c[0],c[1]);
+			console.log("distance: "+dists[j]);
+		}
+		j+=1;
+	}
 
+	var min = dists[0];
+	var min_idx = 0;
+	for(var i = 1 ; i < dists.length;i++)
+	{
+		if(dists[i] < min)
+		{
+			min = dists[i];
+			min_idx = i;
+		}
+	}
+	g_coords[index] = c_check[min_idx];
+}
+function checkValid(i,j)
+{
+	if(i < 0 || j < 0 || i > 9 || j > 9 || board[i][j] == 4)
+		return false;
+	return true;
+}
+function calcDistance(x,y)
+{
+	return (pac_x-x)*(pac_x-x) + (pac_y-y)*(pac_y-y);
+}
+function wait(ms){
+	var start = new Date().getTime();
+	var end = start;
+	while(end < start + ms) {
+	  end = new Date().getTime();
+   }
+ }
