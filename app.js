@@ -24,18 +24,6 @@ var g_coords = [];
 var lastmove=4;
 var pac_x;
 var pac_y;
-var pac_x_org;
-var pac_y_org;
-var move_ctr = 1;
-var lives = 5;
-var g_coords_org;
-var lives = 5;
-var max_time;
-
-function setTime(time)
-{
-	max_time = time;
-}
 
 function setGhosts(ghost)
 {
@@ -49,7 +37,6 @@ function setGhosts(ghost)
 	g_coords[2] = [0,9];
 	g_coords[3] = [9,0];
 	g_coords[4] = [9,9];
-	g_coords_org = g_coords;
 }
 function setKeys(_up,_down,_left,_right)
 {
@@ -77,7 +64,6 @@ function setFood(food)
 }
 
 function Start() {
-	move_ctr = 1;
 	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
@@ -148,14 +134,12 @@ function Start() {
 						board[i][j] = 9;
 						flag = true;
 					} 
-					else if (randomNum  == 4 && pacman_remain>0 &&checkValid2(i,j)) {
+					else if (randomNum  == 4 && pacman_remain>0) {
 						shape.i = i;
 						shape.j = j;
 						pacman_remain--;
 						pac_x = i;
 						pac_y = j;
-						pac_x_org = pac_x;
-						pac_y_org = pac_y;
 						board[i][j] = 2;
 						flag = true;
 						
@@ -185,7 +169,7 @@ function Start() {
 	addEventListener(
 		"keyup",
 		function(e) {
-			delete keysDown[String.fromCharCode(e.keyCode)] ;
+			keysDown[String.fromCharCode(e.keyCode)] = false;
 			
 		},
 		false
@@ -195,12 +179,7 @@ function Start() {
 	
 	
 }
-function not_borders(i,j)
-{
-	if((i == 0 && j == 0)||(i== 0 && j==9)||(i== 9 && j==0)||(i== 9 && j==9))
-		return false;
-	return true;
-}
+
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
 	var j = Math.floor(Math.random() * 9 + 1);
@@ -227,10 +206,28 @@ function GetKeyPressed() {
 }
 
 
+function roundedRect(ctx, x, y, width, height, radius) {
+	ctx.beginPath();
+	ctx.moveTo(x, y + radius);
+	ctx.lineTo(x, y + height - radius);
+	ctx.arcTo(x, y + height, x + radius, y + height, radius);
+	ctx.lineTo(x + width - radius, y + height);
+	ctx.arcTo(x + width, y + height, x + width, y + height-radius, radius);
+	ctx.lineTo(x + width, y + radius);
+	ctx.arcTo(x + width, y, x + width - radius, y, radius);
+	ctx.lineTo(x + radius, y);
+	ctx.arcTo(x, y, x, y + radius, radius);
+	ctx.stroke();
+}
+
+
 function Draw(x) {
 	let posibleMove=[1,2,3,4]
 	
 	canvas.width = canvas.width; //clean board
+	
+    // roundedRect(context, 12, 12, 150, 150, 15);
+    // roundedRect(context, 19, 19, 150, 150, 9);
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
 	for (var i = 0; i < 10; i++) {
@@ -385,37 +382,25 @@ function UpdatePosition() {
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	
-	if (time_elapsed >= max_time) {
+	if (score == scoreWin) {
 		window.clearInterval(interval);
-		window.alert("surely you can do better than "+score+" points");
-
+		window.alert("Game completed");
 	} else {
 		
 		Draw(x);
 		DrawGhosts();
-		UpdateGhosts(move_ctr++);
+		UpdateGhosts();
 	}
 }
-function UpdateGhosts(move_ctr)
+function UpdateGhosts()
 {
-	
-	if(move_ctr % 2 != 0)
-	{
-		
-		
-		return 0;
-	}
 	
 	for( var i = 1; i <= n_ghosts ; i++)
 	{
-		if(UpdateGhost(i))
-		{
-			return 1;
-		}
+		UpdateGhost(i);
 		
 	}
 	
-	return 1;
 
 }
 function UpdateGhost(index)
@@ -430,7 +415,8 @@ function UpdateGhost(index)
 		if(checkValid(c[0],c[1]))
 		{
 			dists[j] = calcDistance(c[0],c[1]);
-		}	
+			console.log("distance: "+dists[j]);
+		}
 		j+=1;
 	}
 
@@ -445,33 +431,10 @@ function UpdateGhost(index)
 		}
 	}
 	g_coords[index] = c_check[min_idx];
-	var x = g_coords[index][0];
-	var y = g_coords[index][1];
-	if(board[x][y] == 2)
-		{
-			lives-=1;
-			score-= 10;
-			refresh()
-			pac_x = pac_x_org;
-			pac_y = pac_y_org;
-			shape.i = pac_x;
-			shape.j = pac_y;
-
-			board[x][y] = 0;
-			board[pac_x_org][pac_y_org] = 2;
-			return true;
-		}
-		return false;
 }
 function checkValid(i,j)
 {
 	if(i < 0 || j < 0 || i > 9 || j > 9 || board[i][j] == 4)
-		return false;
-	return true;
-}
-function checkValid2(i,j)
-{
-	if(i == 0 || j == 0 || i == 9 || j == 9 || board[i][j] == 4)
 		return false;
 	return true;
 }
@@ -486,7 +449,6 @@ function wait(ms){
 	  end = new Date().getTime();
    }
  }
-
  function DrawGhosts()
  {
 	for(var i = 1 ; i<=n_ghosts;i++)
@@ -501,11 +463,4 @@ function wait(ms){
 		context.drawImage(img,center.x,center.y);
 
 	}
- }
- function refresh()
- {
-	 g_coords[1] = [0,0];
-	 g_coords[2] = [0,9];
-	 g_coords[3] = [9,0];
-	 g_coords[4] = [9,9];
  }
