@@ -27,7 +27,7 @@ var pac_y;
 var pac_x_org;
 var pac_y_org;
 var move_ctr = 1;
-var lives = 50000;
+var lives = 5;
 var g_coords_org;
 
 var max_time;
@@ -402,7 +402,7 @@ function UpdatePosition() {
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	
-	if (time_elapsed >= 1000000) {
+	if (time_elapsed >= max_time) {
 		window.clearInterval(interval);
 		window.alert("time over! surely you can do better than "+score);
 	} else {
