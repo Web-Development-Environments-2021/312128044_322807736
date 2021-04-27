@@ -14,17 +14,21 @@
 	<body>
 
 		<nav id="navbar" class="navbar" >
-			<img src="https://static.thenounproject.com/png/9215-200.png" class="logo" width="50" height="50" style="left: 0px;background-color:white; border-radius: 15px;"></img>
-			<a id="wa" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a>
-			<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
-			<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
-			<a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a>
-			<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
-			<a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a>
+			<span>
+				<img src="https://static.thenounproject.com/png/9215-200.png" class="logo" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')" ></img>
+			</span>
+			<span>
+				<!-- <a id="wa" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a> -->
+				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
+				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
+				<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
+				<a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a>
+				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
+			</span>
 		</nav>
 		
 		<div id="target_welcomeDiv"></div>		
-		<br><br><br><br>
+		<br><br><br>
 
 		<div id="welcomeDiv" style="display: block;" >
 			<br><br><br>
@@ -37,9 +41,9 @@
 		</div> 
 
 		<div id="registrationDiv" style="display: none;">
-			<headline style="text-shadow: 3px 3px 3px rgba(248, 60, 60, 0.897);"><b>Join Us!</b></headline>
+			<headline ><b>Join Us!</b></headline>
 			<form id="regform" class="container" method ="POST">	
-				<secLine style="text-shadow: 3px 3px 3px rgba(250, 113, 113, 0.897);">Registration</secLine>
+				<secLine style="text-shadow: 3px 3px 3px rgba(153, 91, 91, 0.986);">Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
 				<input id = "i_reg_username" type="text" placeholder="Enter User Name" name="userName" required>
@@ -64,7 +68,7 @@
 
 
 		<div id="loginDiv" style="display: none;">
-			<headline style="text-shadow: 3px 3px 3px rgba(60, 120, 248, 0.897);"><b>Welcome Back!</b></headline>
+			<headline ><b>Welcome Back!</b></headline>
 			<form id="logform"  class="container">
 				<secLine style="text-shadow: 3px 3px 3px rgba(116, 158, 248, 0.897);">Login</secLine>
 				<br>
@@ -173,47 +177,49 @@
 						<canvas id="canvas" height="600" width="600"></canvas>
 					</div>
 				</th>
-				<th style="text-align:left">
+				<th style="text-align:left; padding: 25px; border-radius: 20px;">
 					<p style="padding-left: 80px;">
 						<lable style="padding-left: 15px;" ><img class="arrow" src="pictures/arrows/up.png" alt="" ></label>
 						<br>
-						<input id="val_up" style="width: 80px; text-align: center;" disabled>
+						<input id="val_up" style="width: 80px; text-align: center; border-radius: 20px;height: 25px;" disabled>
 					</p>
 					<p >
 						<label style="padding-right:40px ;"><img class="arrow" src="pictures/arrows/left.png" alt=""></label>
 						<label style="padding-right:40px ;"><img class="arrow" src="pictures/arrows/down.png" alt=""></label>
 						<label ><img class="arrow" src="pictures/arrows/right.png" alt=""></label>
 						<br>			
-						<input id="val_left" style="width: 80px; text-align: center;" disabled>
-						<input id="val_down" style="width: 80px; text-align: center;" disabled>
-						<input id="val_right" style="width: 80px; text-align: center;" disabled>
+						<input id="val_left" style="width: 80px; text-align: center; border-radius: 20px;height: 25px;" disabled>
+						<input id="val_down" style="width: 80px; text-align: center; border-radius: 20px;height: 25px;" disabled>
+						<input id="val_right" style="width: 80px; text-align: center; border-radius: 20px;height: 25px;" disabled>
 
 					</p>
 					<p style="text-align: left;font-style: normal;">
 						<label>choose the number of snacks: </label>
-						<input id="val_n_snack" style="width: 40px;" disabled>
+						<input id="val_n_snack" style="width: 40px; border-radius: 20px;;" disabled>
 						<br><br>
 						<label><u>the color of the different snacks: </u></label>
 						<br>
-						<labal>snacks in the </labal>
-						<input type="color" id="val_c_5p"  disabled>
-						<labal> color will give you 5 points!</labal>
+						<labal>the </labal>
+						<input type="color" id="val_c_5p" style=" border-radius: 20px;" disabled>
+						<labal> snacks grants 5 points!</labal>
 						<br>
-						<labal>snacks in the </labal>
-						<input type="color" id="val_c_15p" disabled>
-						<labal> color will give you 15 points!</labal>
+						<labal>the </labal>
+						<input type="color" id="val_c_15p" style=" border-radius: 20px;" disabled>
+						<labal> snacks grants 15 points!</labal>
 						<br>
-						<labal>snacks in the </labal>
-						<input type="color" id="val_c_25p"  disabled>
-						<labal> color will give you 25 points!</labal>
+						<labal>the </labal>
+						<input type="color" id="val_c_25p" style=" border-radius: 20px;" disabled>
+						<labal> snacks grants 25 points!</labal>
 						<br><br>
 						<label for="n_snack"> number of seconds for the game: </label>
-						<input id="val_n_gameSeconds" style="width: 40px;" disabled>
+						<input id="val_n_gameSeconds" style="width: 40px;border-radius: 20px;"" disabled>
 						<br><br>
 						<label for="n_snack">number of ghosts in the game: </label>
-						<input id="val_n_ghosts" style="width: 40px;" disabled>
+						<input id="val_n_ghosts" style="width: 40px;  border-radius: 20px;"" disabled>
 						
 					</p>
+					<button id="game_new" type="submit" class="btn" onclick="newGame()">new Game</button>
+					<button id="start_over" type="submit" class="btn" onclick="start_over()">Start over</button>
 				</th>
 				<th>
 
@@ -404,42 +410,62 @@
 	<script type = "text/javascript" src="./app.js">
 	</script>
 	<script language="javascript">
-	$("#settingform").on("submit",function(event){
-		event.preventDefault();
-		var up = $('#up_key').val();
-		var down = $('#down_key').val();
-		var left = $('#left_key').val();
-		var right = $('#right_key').val();
-		var format = /^[a-zA-Z0-9]*$/;
-		var food = $('#n_snack').val();
-		var s = $('#c_5p').val();
-		var m = $("#c_15p").val();
-		var h = $('#c_25p').val();
-		var n_ghosts =$('#n_ghosts').val();
-		if(up == "\u2191")
-		{
-			up = String.fromCharCode(38);
-		}
-		if(left == "\u2190")
-		{
-			left = String.fromCharCode(37);
-		}
-		if(right == "\u2192")
-		{
-			right = String.fromCharCode(39);
-		}
-		if(down == "\u2193")
-		{
-			down = String.fromCharCode(40);
-		}
-		setGhosts(n_ghosts);
-		setKeys(up,down,left,right);
-		setFood(food);
-		setColors(s,m,h)
-		Start();
-		togVis("gameDiv");
+		$("#settingform").on("submit",function(event){
+			event.preventDefault();
+			var up = $('#up_key').val();
+			var down = $('#down_key').val();
+			var left = $('#left_key').val();
+			var right = $('#right_key').val();
+			var format = /^[a-zA-Z0-9]*$/;
+			var food = $('#n_snack').val();
+			var s = $('#c_5p').val();
+			var m = $("#c_15p").val();
+			var h = $('#c_25p').val();
+			var n_ghosts =$('#n_ghosts').val();
+			if(up == "\u2191")
+			{
+				up = String.fromCharCode(38);
+			}
+			if(left == "\u2190")
+			{
+				left = String.fromCharCode(37);
+			}
+			if(right == "\u2192")
+			{
+				right = String.fromCharCode(39);
+			}
+			if(down == "\u2193")
+			{
+				down = String.fromCharCode(40);
+			}
+			setGhosts(n_ghosts);
+			setKeys(up,down,left,right);
+			setFood(food);
+			setColors(s,m,h)
+			Start();
+			togVis("gameDiv");
+		
+		});
+		</script>
+	<script type = "text/javascript">
+		function newGame(){
+			togVis("settingsDiv");
+		}	
+		
+		function start_over(){
+			event.preventDefault();
+			setGhosts(n_ghosts);
+			setKeys(up,down,left,right);
+			setFood(food);
+			setColors(s,m,h)
+			Start();
+		}	
+		
+			
+			// togVis("gameDiv");
+
+
 	
-});
 	 </script>
 
 

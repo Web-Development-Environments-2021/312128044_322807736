@@ -33,7 +33,7 @@ headline{
     font-size: 84px;
     text-align: center;
     color: rgb(255, 255, 255);
-    text-shadow: 3px 3px 3px rgba(208, 47, 223, 0.897);
+    text-shadow: 3px 3px 3px rgba(210, 203, 211, 0.897);
     
 }
 
@@ -44,7 +44,7 @@ Secline{
     font-size: 68px;
     text-align: center;
     color: rgb(36, 34, 34);
-    text-shadow: 3px 3px 3px rgba(219, 137, 226, 0.897);
+    text-shadow: 3px 3px 3px rgba(63, 63, 63, 0.897);
     
 }
 
@@ -73,27 +73,46 @@ Secline{
     padding: 10px 16px;
     text-align: center;
     z-index:100; position: fixed;
+    height: 80px;
+    /* margin-bottom: 5px; */
 }
 .navbar a {
     color: #999;
     background: rgba(0, 0, 0, 0.5);
-    padding: 15px 17px;
+    padding: 15px 25px;
     font-size: 20px;
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-top: 50px;
     text-align: center;
     position: relative;
     bottom: 15px;
+    border-radius: 30px;
     
+}
+
+.navbar .logo{
+    cursor: pointer;
+    left: 0px;
+    background-color:white;
+    border-radius: 20px;
+    width: 50px ;
+    height:50px;
+}
+.navbar .logo:hover{
+    width: 52px;
+    border-radius: 25px;
+    height: 50px;
+    /* background-color:rgba(255, 255, 255, 0.774); */
+    background-image:url("https://www.kindpng.com/picc/m/98-987839_pacman-ghost-png-pac-man-black-and-white.png");
 }
 .navbar a:hover {
     border: none;
     /* background: rgba(0, 0, 0, 0.4); */
     background: #fff;
-    padding: 20px 17px;
+    padding: 20px 25px;
     color: #1b1b1b;
 }
 .navbar a:active {
@@ -135,6 +154,7 @@ div{
     text-align: center;
     bottom: 80px;
     position: relative;
+    border-radius: 8px;
 }
 #welcomeDiv #rawd:hover {
     background-image: url(pictures/background_registrationbutton.jpeg); 
@@ -171,6 +191,8 @@ div{
     margin: 2px;
     max-width: 500px;
     padding: 16px;
+    border-radius: 25px;
+
     background-color: rgba(255, 255, 255, 0.82);
     
 }
@@ -181,6 +203,7 @@ div{
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
+    border-radius: 25px;
 }
 #registrationDiv input[type=text]:focus, input[type=password]:focus , input[type=email]:focus,input[type=date]:focus {
     background-color: #ddd;
@@ -188,7 +211,7 @@ div{
 }
   /* Set a style for the submit button */
 #registrationDiv .btn {
-    background: rgba(216, 23, 23, 0.986);
+    background: rgba(94, 82, 82, 0.986);
     letter-spacing: 2px;
     text-transform: uppercase;
     /* margin-bottom: 0px; */
@@ -197,7 +220,7 @@ div{
     color: white;
     padding: 16px 20px;
     border: none;
-
+    border-radius: 25px;
     cursor: pointer;
     width: 100%;
     margin-bottom: 8px;
@@ -229,6 +252,8 @@ div{
     margin: 20px;
     max-width: 500px;
     padding: 16px;
+    border-radius: 25px;
+
     background-color: rgba(255, 255, 255, 0.82);
     
 }
@@ -239,6 +264,7 @@ div{
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
+    border-radius: 25px;
 }
 #loginDiv input[type=text]:focus, input[type=password]:focus {
     background-color: #ddd;
@@ -246,10 +272,11 @@ div{
 }
 /* Set a style for the submit button */
 #loginDiv .btn {
-    background: rgba(23, 90, 216, 0.986);
+    background: rgba(64, 68, 75, 0.986);
     letter-spacing: 2px;
     text-transform: uppercase;
     /* margin-bottom: 0px; */
+    border-radius: 25px;
     text-align: center;
     bottom: 80px;
     color: white;
@@ -261,7 +288,7 @@ div{
     opacity: 0.9;
 }
 #loginDiv .btn:hover{
-    background-color: #5984fa;  
+    background-color: #8495c4;  
     background-size: 100% 97%;
     /* padding: 20px 40px; */
     color: #ffffffe5;
@@ -289,15 +316,24 @@ div{
     padding: 16px;
     background-color: rgba(255, 255, 255, 0.5);
     margin: 16px;
+    border-radius: 25px;
     
 }
+#settingsDiv input[type=text], input[type=number], input[color]{
+    border-radius: 15px;
+
+}
+
 #settingsDiv input[type=text]:focus, input[type=number]:focus {
     background-color: #ddd;
     outline: none;
+    border-radius: 25px;
+    
 }
 /* Set a style for the submit button */
 #settingsDiv .btn {
-    background-color: #8f2ead;
+    border-radius: 25px;
+    background-color: #413c42;
     color: white;
     padding: 16px 20px;
     border: none;
@@ -308,6 +344,7 @@ div{
 }
 #settingsDiv .btn:hover {
     opacity: 1;
+    background-color: #7f4b8a;
 }
 #settingsDiv input{
     width: 50px;
@@ -320,6 +357,7 @@ div{
     height: 40px;
     text-align: center;
     font-size: 18px;
+    border-radius: 15px;
 }
 #left_arrow, #left_key ,#down_arrow, #down_key{
     margin-right: 100px;
@@ -355,6 +393,22 @@ div{
     height: 50px;
     font-size: 18px;
     background-color: rgba(2, 2, 2, 0.671);
+}
+
+#gameDiv .btn {
+    border-radius: 25px;
+    background-color: #413c42;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+#gameDiv .btn:hover {
+    opacity: 1;
+    background-color: #7f4b8a;
 }
 
 /* footer */
