@@ -22,7 +22,7 @@
 				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
 				<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
-				<a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a>
+				<!-- <a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a> -->
 				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
 			</span>
 		</nav>
@@ -73,10 +73,10 @@
 				<secLine style="text-shadow: 3px 3px 3px rgba(116, 158, 248, 0.897);">Login</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
-				<input id = "i_log_username" type="text" placeholder="Enter User Name" name="userName" required>
+				<input id = "i_log_username" type="text" placeholder="Enter User Name" name="userName" value='k' required>
 			
 				<label for="psw"><b>Password</b></label>
-				<input id = "i_log_password" type="password" placeholder="Enter Password" name="psw" required>
+				<input id = "i_log_password" type="password" placeholder="Enter Password" name="psw" value='k' required>
 			
 				<button id = "login_b" type="submit" class="btn">Login!</button>
 				<button class = "btn" type="reset" value="Reset">Reset</button>
@@ -166,12 +166,16 @@
 		<div id="gameDiv" style="display: none; align-items: center; text-align: center;">
 			<table style="background-color: rgba(255, 255, 255, 0.842);">
 				<th>
-					<div id = score_n_time style="position: relative;">
+					<div>
+						<label style="padding-right:150px ;">name:</label>
 						<label style="padding-right:150px ;">Score:</label>
-						<label>Time:</label>
-						<br>			
+						<label style="padding-right:150px ;">Time:</label>
+						<label>lives:</label>
+						<br>	
+						<input id="lblname" type="text" disabled/>
 						<input id="lblScore" type="text" disabled/>
 						<input id="lblTime" type="text" disabled/>
+						<input id="lbllives" type="text" value= '5' disabled/>
 					</div>
 					<div id="game" >
 						<canvas id="canvas" height="600" width="600"></canvas>
@@ -219,7 +223,6 @@
 						
 					</p>
 					<button id="game_new" type="submit" class="btn" onclick="newGame()">new Game</button>
-					<button id="start_over" type="submit" class="btn" onclick="start_over()">Start over</button>
 				</th>
 				<th>
 
@@ -438,13 +441,14 @@
 			{
 				down = String.fromCharCode(40);
 			}
+			var name= active_user['fullname'];
+			lblname.value=name;
 			setGhosts(n_ghosts);
 			setKeys(up,down,left,right);
 			setFood(food);
 			setColors(s,m,h)
 			Start();
 			togVis("gameDiv");
-		
 		});
 		</script>
 	<script type = "text/javascript">
@@ -452,14 +456,14 @@
 			togVis("settingsDiv");
 		}	
 		
-		function start_over(){
-			event.preventDefault();
-			setGhosts(n_ghosts);
-			setKeys(up,down,left,right);
-			setFood(food);
-			setColors(s,m,h)
-			Start();
-		}	
+		// function start_over(){
+		// 	event.preventDefault();
+		// 	setGhosts(n_ghosts);
+		// 	setKeys(up,down,left,right);
+		// 	setFood($('#n_snack').val());
+		// 	setColors(s,m,h)
+		// 	Start();
+		// }	
 		
 			
 			// togVis("gameDiv");
