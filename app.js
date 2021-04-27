@@ -208,8 +208,7 @@ function GetKeyPressed() {
 
 function Draw(x) {
 	let posibleMove=[1,2,3,4]
-	let g_ind = 1;
-	console.log(g_coords[g_ind][0]+" , " + g_coords[g_ind][1]);
+	
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
@@ -218,15 +217,8 @@ function Draw(x) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
-			if (i == g_coords[g_ind][0] && j == g_coords[g_ind][1]) {
-				console.log(i+" , "+j)
-				const img = new Image();
-				img.src = ghosts[g_ind];
-				
-				context.drawImage(img,center.x,center.y)
-				g_ind+=1;
-			}
-			else if (board[i][j] == 2) {
+			
+			if (board[i][j] == 2) {
 				if(posibleMove.includes(x,0)){
 					drowPacman(center, x);
 				}
@@ -368,7 +360,7 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	pac_x = shape.i;
 	pac_y = shape.j;
-	UpdateGhosts();
+	
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	
@@ -376,7 +368,10 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.alert("Game completed");
 	} else {
+		
 		Draw(x);
+		DrawGhosts();
+		UpdateGhosts();
 	}
 }
 function UpdateGhosts()
@@ -435,4 +430,19 @@ function wait(ms){
 	while(end < start + ms) {
 	  end = new Date().getTime();
    }
+ }
+ function DrawGhosts()
+ {
+	for(var i = 1 ; i<=n_ghosts;i++)
+	{
+		center = new Object();
+		var x = g_coords[i][0];
+		var y = g_coords[i][1];
+		center.x = x*60+30;
+		center.y = y*60+30;
+		const img = new Image();
+		img.src = ghosts[i];
+		context.drawImage(img,center.x,center.y);
+
+	}
  }
