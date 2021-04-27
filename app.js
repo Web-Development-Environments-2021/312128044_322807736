@@ -27,10 +27,11 @@ var pac_y;
 var pac_x_org;
 var pac_y_org;
 var move_ctr = 1;
-var lives = 5;
+var lives = 50000;
 var g_coords_org;
-var lives = 5;
+
 var max_time;
+var max_food;
 
 function setTime(time)
 {
@@ -68,12 +69,12 @@ function setColors(s,m,h)
 function setFood(food)
 {
 	food_remain = food;
-	
+	max_food = food_remain;
 	food_s = 0.6*food;
 	food_m = 0.3*food;
 	food_h = 0.1*food;
 	
-	scoreWin = 25*food_h + 15*food_m +5*food_s;
+	
 }
 
 function Start() {
@@ -345,6 +346,14 @@ function drowPacman(center, moveTo){
 	}
 
 }
+function checkWin()
+{
+	if(max_food == 0)
+		{
+			window.clearInterval(interval);
+			window.alert("good job! you have finished the game with a score of - "+score+" points and "+ time_elapsed+" seconds, think you can do better?")
+		}
+}
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
@@ -371,12 +380,19 @@ function UpdatePosition() {
 	}
 	if (board[shape.i][shape.j] == 7) {
 		score+=5;
+		max_food-=1;
+		checkWin();
+		
 	}
 	if (board[shape.i][shape.j] == 8) {
 		score+=15;
+		max_food-=1;
+		checkWin();
 	}
 	if (board[shape.i][shape.j] == 9) {
 		score+=25;
+		max_food-=1;
+		checkWin();
 	}
 
 	board[shape.i][shape.j] = 2;
@@ -386,9 +402,9 @@ function UpdatePosition() {
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	
-	if (time_elapsed >= max_time) {
+	if (time_elapsed >= 1000000) {
 		window.clearInterval(interval);
-		window.alert("surely you can do better than "+score);
+		window.alert("time over! surely you can do better than "+score);
 	} else {
 		
 		Draw(x);
@@ -459,6 +475,11 @@ function UpdateGhost(index)
 			lbllives.value = lives;
 			board[x][y] = 0;
 			board[pac_x_org][pac_y_org] = 2;
+			if(lives == 0)
+			{
+				window.clearInterval(interval)
+				window.alert("you lost!");
+			}
 			return true;
 		}
 		return false;
