@@ -422,6 +422,7 @@
 			var m = $("#c_15p").val();
 			var h = $('#c_25p').val();
 			var n_ghosts =$('#n_ghosts').val();
+			var max_time = $('#n_gameSeconds').val();
 			if(up == "\u2191")
 			{
 				up = String.fromCharCode(38);
@@ -442,6 +443,7 @@
 			setKeys(up,down,left,right);
 			setFood(food);
 			setColors(s,m,h)
+			setTime(max_time);
 			Start();
 			togVis("gameDiv");
 		
