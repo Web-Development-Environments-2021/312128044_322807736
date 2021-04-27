@@ -270,6 +270,7 @@ div{
     background-color: #ddd;
     outline: none;
 }
+
 /* Set a style for the submit button */
 #loginDiv .btn {
     background: rgba(64, 68, 75, 0.986);
