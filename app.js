@@ -508,4 +508,4 @@ function wait(ms){
 	 g_coords[2] = [0,9];
 	 g_coords[3] = [9,0];
 	 g_coords[4] = [9,9];
- }גשדגדשגד
+ }
