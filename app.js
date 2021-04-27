@@ -30,17 +30,17 @@ var move_ctr = 1;
 var lives = 5;
 var g_coords_org;
 var heart_remain=2;
-
+var coin_loc;
 var max_time;
 var max_food;
-
+var coin = true;
 
 function setHeart(){
 	heart_remain=2;
 }
 function setTime(time)
 {
-	max_time = time;
+	max_time = parseInt(time);
 }
 
 function setGhosts(ghost)
@@ -83,13 +83,16 @@ function setFood(food)
 }
 
 function Start() {
+	coin = true;
 	move_ctr = 1;
 	context = canvas.getContext("2d");
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
 	var cnt = 100;
-	
+	lives = 5;
+	lbllives.value = lives;
+	lblTime.value = max_time;
 	let pacman_remain = 1;
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {
@@ -100,6 +103,10 @@ function Start() {
 			if ((i == 2 && j == 2) ||
 				(i == 7 && j == 7)){
 				board[i][j] = 10;
+			}
+			else if(i == 5 && j == 5)
+			{
+				coin_loc = [5,5];
 			}
 			else if((i == 7 && j == 2) ||
 					(i == 2&& j == 7)){
@@ -188,6 +195,9 @@ function Start() {
 		board[emptyCell[0]][emptyCell[1]] = 1;
 		food_remain--;
 	}
+	
+	
+	
 	keysDown = {};
 	addEventListener(
 		"keydown",
@@ -201,7 +211,7 @@ function Start() {
 	addEventListener(
 		"keyup",
 		function(e) {
-			delete keysDown[String.fromCharCode(e.keyCode)] ;
+			 keysDown[String.fromCharCode(e.keyCode)] = false;
 			
 		},
 		false
@@ -259,9 +269,11 @@ function Draw(x) {
 			if (board[i][j] == 2) {
 				if(posibleMove.includes(x,0)){
 					drowPacman(center, x);
+					
 				}
 				else{
 					drowPacman(center, lastmove);
+					
 				}		
 			}
 			 else if (board[i][j] == 7) {
@@ -305,41 +317,41 @@ function Draw(x) {
 			} 	
 			else if (board[i][j] == 10) {
 
-				var x = center.x;
-				var y =  center.y;
+				var a = center.x;
+				var b =  center.y;
 				var width = 30;
 				var height = 30;
 				
 				context.save();
 				context.beginPath();
 				var topCurveHeight = height * 0.3;
-				context.moveTo(x, y + topCurveHeight);
+				context.moveTo(a, b + topCurveHeight);
 				// top left curve
 				context.bezierCurveTo(
-					x, y, 
-					x - width / 2, y, 
-					x - width / 2, y + topCurveHeight
+					a, b, 
+					a - width / 2, b, 
+					a - width / 2, b + topCurveHeight
 				);
 				
 				// bottom left curve
 				context.bezierCurveTo(
-					x - width / 2, y + (height + topCurveHeight) / 2, 
-					x, y + (height + topCurveHeight) / 2, 
-					x, y + height
+					a - width / 2, b + (height + topCurveHeight) / 2, 
+					a, b + (height + topCurveHeight) / 2, 
+					a, b + height
 				);
 				
 				// bottom right curve
 				context.bezierCurveTo(
-					x, y + (height + topCurveHeight) / 2, 
-					x + width / 2, y + (height + topCurveHeight) / 2, 
-					x + width / 2, y + topCurveHeight
+					a, b + (height + topCurveHeight) / 2, 
+					a + width / 2, b + (height + topCurveHeight) / 2, 
+					a + width / 2, b + topCurveHeight
 				);
 				
 				// top right curve
 				context.bezierCurveTo(
-					x + width / 2, y, 
-					x, y, 
-					x, y + topCurveHeight
+					a + width / 2, b, 
+					a, b, 
+					a, b + topCurveHeight
 				);
 				
 				context.closePath();
@@ -427,6 +439,9 @@ function drowPacman(center, moveTo){
 		
 	}
 
+		
+	
+
 }
 function checkWin()
 {
@@ -480,8 +495,14 @@ function UpdatePosition() {
 		lbllives.value=lives;
 	}
 	if (board[shape.i][shape.j] == 11) {
-		max_time+=15;
 		
+		max_time+=15;		
+		
+	}
+	if(shape.i == coin_loc[0] && shape.j == coin_loc[1])
+	{
+		score+=50;
+		coin = false;
 	}
 	board[shape.i][shape.j] = 2;
 	pac_x = shape.i;
@@ -489,15 +510,26 @@ function UpdatePosition() {
 	
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	
-	if (time_elapsed >= max_time) {
+	time_elapsed = Math.floor(max_time - time_elapsed);
+	if(lives == 0)
+	{
 		window.clearInterval(interval);
-		window.alert("time over! surely you can do better than "+score);
+		window.alert("Loser!");
+	}
+	else if (time_elapsed == 0) {
+		window.clearInterval(interval);
+		if(score >= 100)
+			window.alert("Winner!");
+		else
+			window.alert("You are better than "+score+"points");
 	} else {
 		
 		Draw(x);
 		DrawGhosts();
 		UpdateGhosts(move_ctr++);
+		if(coin)
+		{DrawCoin();
+		MoveCoin();}
 	}
 }
 
@@ -507,8 +539,7 @@ function UpdateGhosts(move_ctr)
 	
 	if(move_ctr % 2 != 0)
 	{
-		
-		
+				
 		return 0;
 	}
 	
@@ -533,7 +564,7 @@ function UpdateGhost(index)
 	var j = 0;
 	for(c of c_check)
 	{
-		if(checkValid(c[0],c[1]))
+		if(checkValid(c[0],c[1],index))
 		{
 			dists[j] = calcDistance(c[0],c[1]);
 		}	
@@ -574,10 +605,24 @@ function UpdateGhost(index)
 		}
 		return false;
 }
-function checkValid(i,j)
+function checkValid(i,j,index)
 {
-	if(i < 0 || j < 0 || i > 9 || j > 9 || board[i][j] == 4)
+	if(i < 0 || j < 0 || i > 9 || j > 9 || board[i][j] == 4 || !checkGhosts(i,j,index))
 		return false;
+	return true;
+}
+
+function checkGhosts(a,b,index)
+{
+	for(var i = 1 ; i <= n_ghosts ; i++)
+	{
+		if(i == index)
+			continue;
+		var x = g_coords[i][0];
+		var y = g_coords[i][1];
+		if(a == x && b == y)
+			return false;
+	}
 	return true;
 }
 function checkValid2(i,j)
@@ -619,4 +664,33 @@ function wait(ms){
 	 g_coords[2] = [0,9];
 	 g_coords[3] = [9,0];
 	 g_coords[4] = [9,9];
+ }
+
+ function DrawCoin()
+ {
+	center = new Object();
+	var x = coin_loc[0];
+	var y = coin_loc[1];
+	center.x = x*60+30;
+	center.y = y*60+30;
+	const img = new Image();
+	img.src = 'pictures/coin.png';
+	context.drawImage(img,center.x,center.y);
+ }
+ function MoveCoin()
+ {
+	
+	var x = coin_loc[0];
+	var y = coin_loc[1];
+	var dirs = [[x+1,y],[x-1,y],[x,y+1],[x,y-1]];
+	var dir;
+	while(true)
+	{
+		var random_dir = Math.floor(Math.random()*4);
+		dir = dirs[random_dir];
+		if(checkValid(dir[0],dir[1],5))
+			break;
+	}
+	coin_loc[0] = dir[0];
+	coin_loc[1] = dir[1];
  }
