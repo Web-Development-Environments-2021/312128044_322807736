@@ -27,12 +27,17 @@ var pac_y;
 var pac_x_org;
 var pac_y_org;
 var move_ctr = 1;
-var lives = 50000;
+var lives = 5;
 var g_coords_org;
+var heart_remain=2;
 
 var max_time;
 var max_food;
 
+
+function setHeart(){
+	heart_remain=2;
+}
 function setTime(time)
 {
 	max_time = time;
@@ -91,7 +96,17 @@ function Start() {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
-			if (
+			
+			if ((i == 2 && j == 2) ||
+				(i == 7 && j == 7)){
+				board[i][j] = 10;
+			}
+			else if((i == 7 && j == 2) ||
+					(i == 2&& j == 7)){
+				board[i][j] = 11;
+
+			}
+			else if (
 				(i == 1 && j == 1) ||
 				(i == 3 && j == 3) ||
 				(i == 2 && j == 3) ||
@@ -121,13 +136,13 @@ function Start() {
 				board[i][j] = 4;
 			} else {
 				flag = false;
-				if(food_remain == 0 && pacman_remain ==0)
+				if(food_remain == 0 && pacman_remain ==0 )
 				{
 					continue;
 				}
 				while(!flag)
 				{
-					var randomNum = Math.floor(Math.random()*4+1);
+					var randomNum = Math.floor(Math.random()*5+1);
 					
 					if (randomNum  == 1 && food_s>0) {
 						food_s--;
@@ -161,7 +176,7 @@ function Start() {
 						flag = true;
 						
 					} 
-					
+										
 				}
 				
 			}
@@ -252,41 +267,108 @@ function Draw(x) {
 			 else if (board[i][j] == 7) {
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = color_s; //color
+				context.fillStyle=color_s; //color
+				// gradient.addColorStop("0"," magenta");
+				// context.fillStyle = 'white'; 
 				context.fill();
+				context.beginPath();
+				context.font = "9px Ariel";
+				context.fillStyle = "white";  //<======= here
+				context.fillText("5", center.x-2, center.y+3);
+				context.fill();
+
+
 			} 
 			else if (board[i][j] == 8) {
 				context.beginPath();
 				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
 				context.fillStyle = color_m; //color
 				context.fill();
+				context.beginPath();
+				context.font = "12px Ariel";
+				context.fillStyle = "white";  //<======= here
+				context.fillText("15", center.x-6, center.y+4);
+				context.fill();
 
 			}
-			 else if (board[i][j] == 7) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = color_s; //color
-				context.fill();
-			} 
-			else if (board[i][j] == 8) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = color_m; //color
-				context.fill();
-			} 			
+			
 			else if (board[i][j] == 9) {
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-
 				context.fillStyle = color_h; //color
 				context.fill();
-			} 
-			
+				context.beginPath();
+				context.font = "13px Ariel";
+				context.fillStyle = "white";  //<======= here
+				context.fillText("25", center.x-6, center.y+4);
+				context.fill();
+			} 	
+			else if (board[i][j] == 10) {
+
+				var x = center.x;
+				var y =  center.y;
+				var width = 30;
+				var height = 30;
+				
+				context.save();
+				context.beginPath();
+				var topCurveHeight = height * 0.3;
+				context.moveTo(x, y + topCurveHeight);
+				// top left curve
+				context.bezierCurveTo(
+					x, y, 
+					x - width / 2, y, 
+					x - width / 2, y + topCurveHeight
+				);
+				
+				// bottom left curve
+				context.bezierCurveTo(
+					x - width / 2, y + (height + topCurveHeight) / 2, 
+					x, y + (height + topCurveHeight) / 2, 
+					x, y + height
+				);
+				
+				// bottom right curve
+				context.bezierCurveTo(
+					x, y + (height + topCurveHeight) / 2, 
+					x + width / 2, y + (height + topCurveHeight) / 2, 
+					x + width / 2, y + topCurveHeight
+				);
+				
+				// top right curve
+				context.bezierCurveTo(
+					x + width / 2, y, 
+					x, y, 
+					x, y + topCurveHeight
+				);
+				
+				context.closePath();
+				context.fillStyle = "red";
+				context.fill();				
+			}		
+			else if(board[i][j] == 11){
+				
+				context.beginPath();
+				context.arc(center.x, center.y, 20, 0 , 2 * Math.PI);
+				context.fillStyle = "#cccccc";
+				context.fill();
+
+				context.beginPath();
+				context.rect(center.x - 2, center.y - 18, 4, 20);
+				context.rect(center.x - 15, center.y -2, 17, 4);
+				context.fillStyle = "rgb(0, 0, 0)"; //color
+				context.fill();
+
+
+
+
+			}		
 			else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 25, center.y - 25, 50, 50);
 				context.fillStyle = "rgba(0,0,0,0.8)"; //color
 				context.fill();
+				
 			}
 		}
 	}
@@ -357,7 +439,6 @@ function checkWin()
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
-	// lastmove=x;
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
@@ -394,7 +475,14 @@ function UpdatePosition() {
 		max_food-=1;
 		checkWin();
 	}
-
+	if (board[shape.i][shape.j] == 10) {
+		lives+=1;
+		lbllives.value=lives;
+	}
+	if (board[shape.i][shape.j] == 11) {
+		max_time+=15;
+		
+	}
 	board[shape.i][shape.j] = 2;
 	pac_x = shape.i;
 	pac_y = shape.j;
@@ -402,7 +490,7 @@ function UpdatePosition() {
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	
-	if (time_elapsed >= 1000000) {
+	if (time_elapsed >= max_time) {
 		window.clearInterval(interval);
 		window.alert("time over! surely you can do better than "+score);
 	} else {
@@ -412,6 +500,8 @@ function UpdatePosition() {
 		UpdateGhosts(move_ctr++);
 	}
 }
+
+
 function UpdateGhosts(move_ctr)
 {
 	
