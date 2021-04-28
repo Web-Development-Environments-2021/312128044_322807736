@@ -21,7 +21,7 @@
 				<!-- <a id="wa" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a> -->
 				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
-				<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
+				<a id="aa" href="#aboutDiv" onmousedown = " switchDialogAboout(event)">About</a>
 				
 				<a id="mute" href="#" onclick="mute()" style="display:inline;margin-left: 10px;">
 					<img src="sounds/mute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
@@ -44,7 +44,7 @@
 
 		<audio autoplay loop id="homeSound">
 			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/Counter Strike Theme Song (1.6 Main Menu).mp3" type="audio/mpeg">
+			<source src="sounds/Counter Strike Theme Song.mp3" type="audio/mpeg">
 			
 		</audio>
 		<audio autoplay loop id="gameSound"  muted = true>
@@ -192,7 +192,7 @@
 
 		</div>
 		
-		<div open id="aboutDiv" style="display: none;">
+		<div id="aboutDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 245, 60, 0.897);"><b>About PacMan</b></headline>
 			<p class="textinfo">
 				Pacman is a fun game that has been around for 4 decades(!!). Created in 1980, the idea behind this game is super simple. And that’s maybe the major reason why it is so popular even today, many more decades after its inception.
@@ -281,8 +281,27 @@
 	</footer>
 
 
-	
 	<script>
+		function switchDialogAboout() {
+			$('#aboutDiv').show();
+			$(document).mouseup(function (e) {
+				var container = $("#aboutDiv");
+
+				// if the target of the click isn't the container nor a descendant of the container
+				if (!container.is(e.target) && container.has(e.target).length === 0) {
+					container.hide();
+				}
+			});
+			//esc press
+			$(document).on('keydown', function (e) {
+				if (e.keyCode == 27) {
+					$('#aboutDiv').hide();
+				}
+			});
+			$('#close').click(function () {
+				$('#aboutDiv').hide()
+			})
+		}
 	</script>
 	<script>
 		var lastSoudPlayed='homeSound';
