@@ -34,7 +34,7 @@ var coin_loc;
 var max_time;
 var max_food;
 var coin = true;
-var audio =new Audio("sounds\music.mp3");
+var audio =new Audio("sounds/wii.mp3");
 var muted = false;
 
 function mute_unmute(){
@@ -632,7 +632,6 @@ function UpdateGhost(index)
 			{
 				audio.pause();
 				audio.currentTime=0;
-				window.clearInterval(interval);
 				// document.getElementById('loseSound').play();
 				window.clearInterval(interval)
 				window.alert("you lost!");

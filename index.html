@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<title>free viruses, come in ;) !</title> 
+		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<link rel="icon" href="https://static.thenounproject.com/png/9215-200.png" type = "image/x-icon">
 	</head>
 
@@ -24,6 +25,14 @@
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
 				<a id="aa"  >About</a>
 				
+				<a id="mute"  onclick="mute_unmute()" style="display:inline;margin-left: 10px;">
+					<img src="sounds/unmute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px;" ></img>
+				</a>
+				<a id="unmute"  onclick="mute_unmute()" style="display:none;margin-left: 10px;">
+					<img src="sounds/mute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px"></img>
+				</a>
 				
 				<!-- <a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a> -->
 				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
@@ -202,14 +211,6 @@
 				<input id="lblTime" type="text" disabled/>
 				<input id="lbllives" type="text" value= '5' disabled/>
 
-				<button id="mute"  onclick="mute_unmute()" style="display:inline;margin-left: 10px;">
-					<img src="sounds/unmute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
-					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px;" ></img>
-				</button>
-				<button id="unmute"  onclick="mute_unmute()" style="display:none;margin-left: 10px;">
-					<img src="sounds/mute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
-					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px"></img>
-				</button>
 				
 			</div>
 			<table style="background-color:  rgba(255, 255, 255, 0.842);  border-radius: 20px;">
