@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<title>free viruses, come in ;) !</title> 
+		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<link rel="icon" href="https://static.thenounproject.com/png/9215-200.png" type = "image/x-icon">
 	</head>
 
@@ -24,11 +25,11 @@
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
 				<a id="aa"  >About</a>
 				
-				<a id="mute"  onclick="mute()" style="display:inline;margin-left: 10px;">
+				<a id="mute"  onclick="mute_unmute()" style="display:inline;margin-left: 10px;">
 					<img src="sounds/unmute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
 					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px;" ></img>
 				</a>
-				<a id="unmute"  onclick="unmute()" style="display:none;margin-left: 10px;">
+				<a id="unmute"  onclick="mute_unmute()" style="display:none;margin-left: 10px;">
 					<img src="sounds/mute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
 					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px"></img>
 				</a>
@@ -71,33 +72,6 @@
 		<br><br><br>
 		
 		</div>
-
-		<audio autoplay loop id="homeSound">
-			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/Counter Strike Theme Song.mp3" type="audio/mpeg">
-			
-		</audio>
-		<audio autoplay loop id="gameSound"  muted = true>
-			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/Monkeys Spinning Monkeys (Kevin MacLeod) - Gaming Background Music (HD).mp3" type="audio/mpeg" >
-			
-		</audio>
-		<audio id="loseSound">
-			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/The Price is Right Losing Horn - Gaming Sound Effect (HD).mp3" type="audio/mpeg">
-			
-		</audio>
-		<audio id="winSound">
-			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/Winning sound effect.mp3" type="audio/mpeg">
-			
-		</audio>
-		<audio  id="timeoutSound">
-			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
-			<source src="sounds/Mission Failed.mp3" type="audio/mpeg">
-			
-		</audio>
-
 
 		<div id="welcomeDiv" style="display: block;" >
 			<br><br><br>
@@ -236,6 +210,8 @@
 				<input id="lblScore" type="text" disabled/>
 				<input id="lblTime" type="text" disabled/>
 				<input id="lbllives" type="text" value= '5' disabled/>
+
+				
 			</div>
 			<table style="background-color:  rgba(255, 255, 255, 0.842);  border-radius: 20px;">
 				<th>
@@ -301,20 +277,7 @@
 
 	
 	<script>
-		var lastSoudPlayed='homeSound';
-		function mute(){
-			
-			document.getElementById(lastSoudPlayed).muted = true;
-			document.getElementById('unmute').style.display = "inline";
-			document.getElementById('mute').style.display = "none";
-
-		}
-		function unmute(){
-			document.getElementById(lastSoudPlayed).muted = false;
-			document.getElementById('unmute').style.display = "none";
-			document.getElementById('mute').style.display = "inline";
-
-		}
+		
 		$("#settingsDiv").on("submit",function(){
 			document.getElementById('val_up').value=document.getElementById('up_key').value;
 			document.getElementById('val_down').value=document.getElementById('down_key').value;
@@ -330,14 +293,10 @@
 			document.getElementById('val_n_gameSeconds').value=document.getElementById('n_gameSeconds').value;
 			document.getElementById('val_n_ghosts').value=document.getElementById('n_ghosts').value;
 			
-			lastSoudPlayed='gameSound';
-			
+				
 		});
 		function newGame(){
-			document.getElementById(lastSoudPlayed).muted = true;
 			window.clearInterval(interval);
-			lastSoudPlayed='homeSound';
-			document.getElementById(lastSoudPlayed).muted = false;
 			togVis("settingsDiv");
 		}	
 		
@@ -362,21 +321,14 @@
 		{if(document.getElementById(divID).style.display == 'block')
 			{return;}
 		
-		if(divID!='gameDiv'&&(!document.getElementById('gameSound').muted||!document.getElementById('gameSound').muted))
-		{
-			document.getElementById('gameSound').muted = true;
-			document.getElementById('homeSound').muted = false;
-			lastSoudPlayed='homeSound';
-		}
-		else if(divID!='gameDiv'){
-
-			
-			lastSoudPlayed='homeSound';
-		}
 		document.getElementById(currDiv).style.display = 'none';
 		document.getElementById(divID).style.display = 'block';
 		if(divID!='gameDiv'){
-			window.clearInterval(interval);}
+			audio.pause();
+			audio.currentTime = 0;
+			window.clearInterval(interval);
+				
+		}
 		currDiv = divID;}, 300,divID);
 		
 	}
@@ -549,8 +501,6 @@
 		});
 		</script>
 
-
-
 	<script type = "text/javascript">
 		function generateRandomSettings(event) {
 			event.preventDefault();
@@ -575,8 +525,6 @@
 				color15 += letters[Math.floor(Math.random() * 16)];
 				color25 += letters[Math.floor(Math.random() * 16)];
  			}
-
-
 
 
 			document.getElementById("n_snack").value = numberSnacks;
@@ -636,5 +584,24 @@
     	modal.style.display = "none"
   		}
 	}		
+	</script>
+
+	<script type = "text/javascript">
+		
+		function mute_unmute(){
+			if(muted){
+				audio.play();
+				document.getElementById('unmute').style.display = "inline";
+				document.getElementById('mute').style.display = "none";
+				muted = true;
+			}
+			else{
+				audio.pause();
+				audio.currentTime = 0;
+				document.getElementById('unmute').style.display = "none";
+				document.getElementById('mute').style.display = "inline";
+				muted = false;
+			}
+		}
 	</script>
 </html>
