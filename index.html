@@ -22,21 +22,42 @@
 				<!-- <a id="wa" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a> -->
 				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
-				<a id="aa" class = "show btn" >About</a>
+				<a id="aa"  >About</a>
 				
 				
 				<!-- <a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a> -->
 				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
 			</span>
 		</nav>
-		<div id="aboutDiv" class="modal" style = "display: none;">
-
-			<!-- Modal content -->
-			<div class="modal-box">
-			  <span class="close-button">X</span>
-			  <p>Some text in the Modal..</p>
-			</div>
+		
 		  
+		  <div class="modal">
+			<div class="modal-header">
+			  <span class="close-btn">&times;</span>
+			  <span>
+				<img src="https://static.thenounproject.com/png/9215-200.png" class="logo" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')" ></img>
+			</span>
+			  <h2>Welcome to our Pacman application!<br>
+				  made by Daniel Zamanski and Liraz Zeidman
+			  </h2>
+			</div>
+			<div class="modal-content">
+			  <p>Submitters: Daniel Zamanski and Liraz Zeidman<br>
+				  We didn't use any special plugins or templates.<br>
+				  Our main difficulties were getting the ghosts to properly render<br>
+				without overriding anything else or messing up the board, as well as controling their speed<br>
+				so poor Pacman stands a chance.<br>
+				getting the music to work properly was also quite the task and so was <br>
+			    drawing all the different characters, snacks and powerups.</p>
+			</div>
+			<div class="modal-footer">
+			  <h2>This site provides the full classic pacman experience<br>
+				  while also allowing you to register log in and compete against your friends!<br>
+		          for any questions\suggestions please contact us at:<br>
+	              zamanski@post.bgu.ac.il<br>
+				  lirazze@post.bgu.ac.il
+            </h2>
+			</div>
 		  </div>
 		<div id="target_welcomeDiv">		
 		<br><br><br>
@@ -250,11 +271,7 @@
 	</body>
 
 
-	<footer>
-		
-			
-			
-	</footer>
+	
 
 
 	
@@ -552,21 +569,20 @@
 	
 	</script>
 	<script type = "text/javascript">
-	let modal = document.querySelector(".modal");
-	let show = document.querySelector(".show");
-	let closeButton = document.querySelector("close-button");
-	function toggleModal() {
-    	modal.classList.toggle("show-modal");
+	let modalBtn = document.getElementById("aa")
+	let modal = document.querySelector(".modal")
+	let closeBtn = document.querySelector(".close-btn")
+	modalBtn.onclick = function(){
+  		modal.style.display = "block"
 	}
-	function windowOnClick(event) {
-    	if (event.target === modal) {
-        toggleModal();
-
-    	}
+	closeBtn.onclick = function(){
+  		modal.style.display = "none"
 	}
-	show.addEventListener("click", toggleModal);
-	closeButton.addEventListener("click", toggleModal);
-	window.addEventListener("click", windowOnClick);	
+	window.onclick = function(e){
+  	if(e.target == modal){
+    	modal.style.display = "none"
+  		}
+	}		
 	</script>
 
 	<script type = "text/javascript">
