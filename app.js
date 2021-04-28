@@ -34,6 +34,25 @@ var coin_loc;
 var max_time;
 var max_food;
 var coin = true;
+var audio =new Audio("sounds\music.mp3");
+var muted = false;
+
+function mute_unmute(){
+	if(muted){
+		audio.play();
+		document.getElementById('unmute').style.display = "inline";
+		document.getElementById('mute').style.display = "none";
+		muted = true;
+	}
+	else{
+		audio.pause();
+		audio.currentTime = 0;
+		document.getElementById('unmute').style.display = "none";
+		document.getElementById('mute').style.display = "inline";
+		muted = false;
+	}
+}
+
 
 function setLives(){
 	lives=5;
@@ -79,13 +98,10 @@ function setFood(food)
 	food_s = 0.6*food;
 	food_m = 0.3*food;
 	food_h = 0.1*food;
-	
-	
 }
 
 function Start() {
-	document.getElementById('homeSound').muted=true;
-	document.getElementById('gameSound').muted=false;
+	audio.play();
 	coin = true;
 	move_ctr = 1;
 	context = canvas.getContext("2d");
@@ -448,12 +464,11 @@ function checkWin()
 {
 	if(max_food == 0)
 		{
-			document.getElementById('gameSound').muted = true;
+			audio.pause();
+			audio.currentTime = 0;
 			window.clearInterval(interval);
-			document.getElementById('winSound').play();
+			// document.getElementById('winSound').play();
 			window.alert("good job! you have finished the game with a score of - "+score+" points and "+ time_elapsed+" seconds, think you can do better?");
-			document.getElementById('homeSound').muted=false;
-			lastSoudPlayed='homeSound';
 		}
 
 	}
@@ -520,27 +535,25 @@ function UpdatePosition() {
 	if(lives == 0)
 	{
 
-		document.getElementById('gameSound').muted = true;
+		audio.pause();
+		audio.currentTime = 0;
 		window.clearInterval(interval);
-		document.getElementById('loseSound').play();
+		// document.getElementById('loseSound').play();
 		window.alert("Loser!");
-		document.getElementById('homeSound').muted=false;
-		lastSoudPlayed='homeSound';
 	}
 	else if (time_elapsed == 0) {
-		document.getElementById('gameSound').muted = true;
+		audio.pause();
+		audio.currentTime = 0;
 		window.clearInterval(interval);
 		if(score >= 100){
-			document.getElementById('winSound').play();
+			// document.getElementById('winSound').play();
 			window.alert("Winner!");
 		}
 
 		else{
-			document.getElementById('timeoutSound').play();
+			// document.getElementById('timeoutSound').play();
 			window.alert("You are better than "+score+"points");
 		}
-		document.getElementById('homeSound').muted=false;
-		lastSoudPlayed='homeSound';
 	} else {
 		
 		Draw(x);
@@ -617,13 +630,12 @@ function UpdateGhost(index)
 			board[pac_x_org][pac_y_org] = 2;
 			if(lives == 0)
 			{
-				document.getElementById('gameSound').muted=true;
+				audio.pause();
+				audio.currentTime=0;
 				window.clearInterval(interval);
-				document.getElementById('loseSound').play();
+				// document.getElementById('loseSound').play();
 				window.clearInterval(interval)
 				window.alert("you lost!");
-				document.getElementById('homeSound').muted=false;
-				lastSoudPlayed='homeSound';
 
 			}
 			return true;
