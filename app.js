@@ -1,4 +1,5 @@
 var context;
+var audio = new Audio('sounds/Counter Strike Theme Song.mp3');
 var shape = new Object();
 var board;
 var score;
@@ -84,6 +85,7 @@ function setFood(food)
 }
 
 function Start() {
+	audio.play();
 	document.getElementById('homeSound').muted=true;
 	document.getElementById('gameSound').muted=false;
 	coin = true;
