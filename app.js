@@ -43,14 +43,14 @@ function mute_unmute(){
 		audio.play();
 		document.getElementById('unmute').style.display = "inline";
 		document.getElementById('mute').style.display = "none";
-		muted = true;
+		muted = false;
 	}
 	else{
 		audio.pause();
 		audio.currentTime = 0;
 		document.getElementById('unmute').style.display = "none";
 		document.getElementById('mute').style.display = "inline";
-		muted = false;
+		muted = true;
 	}
 }
 
