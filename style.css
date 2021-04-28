@@ -364,12 +364,6 @@ div{
     margin-right: 100px;
 }
 
-/* <about Div> */
-#aboutDiv{
-    background-image: url(https://wallpaperaccess.com/full/656405.jpg);
-    min-height: 700px;
-    
-}
 
 
 #gameDiv{
@@ -416,3 +410,72 @@ div{
 footer{
     background-color: rgba(201, 199, 199, 0.932);
 }
+
+.modal {
+    
+      position: fixed;
+    
+      left: 0;
+    
+      top: 0;
+    
+      width: 100%;
+    
+      height: 100%;
+    
+      background-color: rgba(0, 0, 0, 0.3);
+    
+      opacity: 0;
+    
+      visibility: hidden;
+    
+    }
+    
+    .modal-box {
+    
+      position: absolute;
+    
+      top: 50%;
+    
+      left: 50%;
+    
+      transform: translate(-50%, -50%);
+    
+      background-color: pink;
+    
+      padding: 1rem 1.5rem;
+    
+      width: 24rem;
+    
+      border-radius: 0.5rem;
+    
+    }
+    
+    .close-button {
+    
+      float: right;
+    
+      width: 1.5rem;
+    
+      line-height: 1.5rem;
+    
+      text-align: center;
+    
+      cursor: pointer;
+    
+      border-radius: 0.25rem;
+    
+      background-color: lightgray;
+    
+    }
+    
+    
+    .show-modal {
+    
+      opacity: 1;
+    
+      visibility: visible;
+    
+      transform: scale(1.0);
+    
+    }

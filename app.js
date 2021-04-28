@@ -94,6 +94,7 @@ function Start() {
 	pac_color = "yellow";
 	var cnt = 100;
 	lives = 5;
+	lblScore.value = 0;
 	lbllives.value = lives;
 	lblTime.value = max_time;
 	let pacman_remain = 1;

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="jquery-1.10.2.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		
+		<meta charset="UTF-8">
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
@@ -21,14 +22,14 @@
 				<!-- <a id="wa" href="#target_welcomeDiv" onmousedown = "togVis('welcomeDiv')">Welcome</a> -->
 				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
-				<a id="aa" href="#aboutDiv" onmousedown = " switchDialogAboout(event)">About</a>
+				<a id="aa" class = "show btn" >About</a>
 				
-				<a id="mute" href="#" onclick="mute()" style="display:inline;margin-left: 10px;">
-					<img src="sounds/mute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+				<a id="mute"  onclick="mute()" style="display:inline;margin-left: 10px;">
+					<img src="sounds/unmute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
 					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px;" ></img>
 				</a>
-				<a id="unmute" href="#" onclick="unmute()" style="display:none;margin-left: 10px;">
-					<img src="sounds/unmute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+				<a id="unmute"  onclick="unmute()" style="display:none;margin-left: 10px;">
+					<img src="sounds/mute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
 					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px"></img>
 				</a>
 				
@@ -36,7 +37,15 @@
 				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
 			</span>
 		</nav>
-		
+		<div id="aboutDiv" class="modal" style = "display: none;">
+
+			<!-- Modal content -->
+			<div class="modal-box">
+			  <span class="close-button">X</span>
+			  <p>Some text in the Modal..</p>
+			</div>
+		  
+		  </div>
 		<div id="target_welcomeDiv">		
 		<br><br><br>
 		
@@ -192,15 +201,7 @@
 
 		</div>
 		
-		<div id="aboutDiv" style="display: none;">
-			<headline style="text-shadow: 3px 3px 3px rgba(248, 245, 60, 0.897);"><b>About PacMan</b></headline>
-			<p class="textinfo">
-				Pacman is a fun game that has been around for 4 decades(!!). Created in 1980, the idea behind this game is super simple. And that’s maybe the major reason why it is so popular even today, many more decades after its inception.
-				<Br><BR>
-				The thing that a lot of people like about action and arcade games is that they are always fun and they bring in a new perspective on the way you play.
-				<Br><BR><Br><BR><Br><BR>
-				
-		</div>
+		
 		
 		<div id="gameDiv" style="display: none; align-items: center; text-align: center;">
 			
@@ -281,31 +282,11 @@
 	</footer>
 
 
-	<script>
-		function switchDialogAboout() {
-			$('#aboutDiv').show();
-			$(document).mouseup(function (e) {
-				var container = $("#aboutDiv");
-
-				// if the target of the click isn't the container nor a descendant of the container
-				if (!container.is(e.target) && container.has(e.target).length === 0) {
-					container.hide();
-				}
-			});
-			//esc press
-			$(document).on('keydown', function (e) {
-				if (e.keyCode == 27) {
-					$('#aboutDiv').hide();
-				}
-			});
-			$('#close').click(function () {
-				$('#aboutDiv').hide()
-			})
-		}
-	</script>
+	
 	<script>
 		var lastSoudPlayed='homeSound';
 		function mute(){
+			
 			document.getElementById(lastSoudPlayed).muted = true;
 			document.getElementById('unmute').style.display = "inline";
 			document.getElementById('mute').style.display = "none";
@@ -623,5 +604,21 @@
 	}
 	
 	</script>
+	<script type = "text/javascript">
+	let modal = document.querySelector(".modal");
+	let show = document.querySelector(".show");
+	let closeButton = document.querySelector("close-button");
+	function toggleModal() {
+    	modal.classList.toggle("show-modal");
+	}
+	function windowOnClick(event) {
+    	if (event.target === modal) {
+        toggleModal();
 
+    	}
+	}
+	show.addEventListener("click", toggleModal);
+	closeButton.addEventListener("click", toggleModal);
+	window.addEventListener("click", windowOnClick);	
+	</script>
 </html>
