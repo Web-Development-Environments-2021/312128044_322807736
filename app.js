@@ -433,6 +433,7 @@ function checkWin()
 	if(max_food == 0)
 		{
 			window.clearInterval(interval);
+			
 			window.alert("good job! you have finished the game with a score of - "+score+" points and "+ time_elapsed+" seconds, think you can do better?")
 		}
 }
