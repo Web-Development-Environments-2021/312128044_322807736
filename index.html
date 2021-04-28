@@ -22,13 +22,52 @@
 				<a id="ra" href="#registrationDiv" onmousedown = "togVis('registrationDiv')">Registration</a>
 				<a id="la" href="#loginDiv" onmousedown = "togVis('loginDiv')">Login</a>
 				<a id="aa" href="#aboutDiv" onmousedown = "togVis('aboutDiv')">About</a>
+				
+				<a id="mute" href="#" onclick="mute()" style="display:inline;margin-left: 10px;">
+					<img src="sounds/mute.png"   class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px;" ></img>
+				</a>
+				<a id="unmute" href="#" onclick="unmute()" style="display:none;margin-left: 10px;">
+					<img src="sounds/unmute.png" class="logo" href="#" width="80px" height="80px" onmousedown = "" 
+					style="background-color: rgba(240, 248, 255, 0.788); border-radius: 20px"></img>
+				</a>
+				
 				<!-- <a id="sa" href="#settingsDiv" onmousedown = "togVis('settingsDiv')">Settings</a> -->
 				<!-- <a id="ga" href="#gameDiv" onmousedown = "togVis('gameDiv')">Game</a> -->
 			</span>
 		</nav>
 		
-		<div id="target_welcomeDiv"></div>		
+		<div id="target_welcomeDiv">		
 		<br><br><br>
+		
+		</div>
+
+		<audio autoplay loop id="homeSound">
+			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
+			<source src="sounds/Counter Strike Theme Song (1.6 Main Menu).mp3" type="audio/mpeg">
+			
+		</audio>
+		<audio autoplay loop id="gameSound"  muted = true>
+			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
+			<source src="sounds/Monkeys Spinning Monkeys (Kevin MacLeod) - Gaming Background Music (HD).mp3" type="audio/mpeg" >
+			
+		</audio>
+		<audio id="loseSound">
+			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
+			<source src="sounds/The Price is Right Losing Horn - Gaming Sound Effect (HD).mp3" type="audio/mpeg">
+			
+		</audio>
+		<audio id="winSound">
+			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
+			<source src="sounds/Winning sound effect.mp3" type="audio/mpeg">
+			
+		</audio>
+		<audio  id="timeoutSound">
+			<!-- <source src="sounds/Pac-Man Death - Sound Effect (HD).mp3" type="audio/ogg"> -->
+			<source src="sounds/Mission Failed.mp3" type="audio/mpeg">
+			
+		</audio>
+
 
 		<div id="welcomeDiv" style="display: block;" >
 			<br><br><br>
@@ -42,7 +81,7 @@
 
 		<div id="registrationDiv" style="display: none;">
 			<headline ><b>Join Us!</b></headline>
-			<form id="regform" class="container" method ="POST">	
+			<form id="regform" class="container" >	
 				<secLine style="text-shadow: 3px 3px 3px rgba(153, 91, 91, 0.986);">Registration</secLine>
 				<br>
 				<label for="userName"><b>User Name</b></label>
@@ -153,7 +192,7 @@
 
 		</div>
 		
-		<div id="aboutDiv" style="display: none;">
+		<div open id="aboutDiv" style="display: none;">
 			<headline style="text-shadow: 3px 3px 3px rgba(248, 245, 60, 0.897);"><b>About PacMan</b></headline>
 			<p class="textinfo">
 				Pacman is a fun game that has been around for 4 decades(!!). Created in 1980, the idea behind this game is super simple. And that’s maybe the major reason why it is so popular even today, many more decades after its inception.
@@ -164,19 +203,20 @@
 		</div>
 		
 		<div id="gameDiv" style="display: none; align-items: center; text-align: center;">
-			<table style="background-color: rgba(255, 255, 255, 0.842);">
+			
+			<div style="background-color: rgba(255, 255, 255, 0.842);">
+				<label style="padding-right:150px ;">name:</label>
+				<label style="padding-right:150px ;">Score:</label>
+				<label style="padding-right:150px ;">Time:</label>
+				<label>lives:</label>
+				<br>	
+				<input id="lblname" type="text" disabled/>
+				<input id="lblScore" type="text" disabled/>
+				<input id="lblTime" type="text" disabled/>
+				<input id="lbllives" type="text" value= '5' disabled/>
+			</div>
+			<table style="background-color:  rgba(255, 255, 255, 0.842);  border-radius: 20px;">
 				<th>
-					<div>
-						<label style="padding-right:150px ;">name:</label>
-						<label style="padding-right:150px ;">Score:</label>
-						<label style="padding-right:150px ;">Time:</label>
-						<label>lives:</label>
-						<br>	
-						<input id="lblname" type="text" disabled/>
-						<input id="lblScore" type="text" disabled/>
-						<input id="lblTime" type="text" disabled/>
-						<input id="lbllives" type="text" value= '5' disabled/>
-					</div>
 					<div id="game" >
 						<canvas id="canvas" height="600" width="600"></canvas>
 					</div>
@@ -238,11 +278,25 @@
 		
 			
 			
-			
-			
 	</footer>
 
+
 	<script>
+	</script>
+	<script>
+		var lastSoudPlayed='homeSound';
+		function mute(){
+			document.getElementById(lastSoudPlayed).muted = true;
+			document.getElementById('unmute').style.display = "inline";
+			document.getElementById('mute').style.display = "none";
+
+		}
+		function unmute(){
+			document.getElementById(lastSoudPlayed).muted = false;
+			document.getElementById('unmute').style.display = "none";
+			document.getElementById('mute').style.display = "inline";
+
+		}
 		$("#settingsDiv").on("submit",function(){
 			document.getElementById('val_up').value=document.getElementById('up_key').value;
 			document.getElementById('val_down').value=document.getElementById('down_key').value;
@@ -258,8 +312,17 @@
 			document.getElementById('val_n_gameSeconds').value=document.getElementById('n_gameSeconds').value;
 			document.getElementById('val_n_ghosts').value=document.getElementById('n_ghosts').value;
 			
+			lastSoudPlayed='gameSound';
 			
 		});
+		function newGame(){
+			document.getElementById(lastSoudPlayed).muted = true;
+			window.clearInterval(interval);
+			lastSoudPlayed='homeSound';
+			document.getElementById(lastSoudPlayed).muted = false;
+			togVis("settingsDiv");
+		}	
+		
 			
 	</script>
 	<script type = "text/javascript">
@@ -281,7 +344,8 @@
 		{if(document.getElementById(divID).style.display == 'block')
 			{return;}
 		
-		
+		document.getElementById('gameSound').muted = true;
+		document.getElementById('homeSound').muted = false;
 		document.getElementById(currDiv).style.display = 'none';
 		document.getElementById(divID).style.display = 'block';
 		currDiv = divID;}, 300,divID);
@@ -290,7 +354,7 @@
 	
 	
 	$("#regform").on("submit",function(event){
-		
+		event.preventDefault();		
 		var username = $("#i_reg_username").val();
 		var password = $("#i_reg_password").val();
 		var fullname =$("#i_reg_fullname").val();
@@ -313,6 +377,7 @@
 			users.push(user);
 			window.alert("successful registration!");
 			$("#regform")[0].reset()
+			togVis('welcomeDiv');
 		}
 		
 	}
@@ -447,32 +512,14 @@
 			setGhosts(n_ghosts);
 			setKeys(up,down,left,right);
 			setFood(food);
+			setLives();
 			setColors(s,m,h)
 			setTime(max_time);
 			Start();
 			togVis("gameDiv");
 		});
 		</script>
-	<script type = "text/javascript">
-		function newGame(){
-			togVis("settingsDiv");
-		}	
-		
-		// function start_over(){
-		// 	event.preventDefault();
-		// 	setGhosts(n_ghosts);
-		// 	setKeys(up,down,left,right);
-		// 	setFood($('#n_snack').val());
-		// 	setColors(s,m,h)
-		// 	Start();
-		// }	
-		
-			
-			// togVis("gameDiv");
 
-
-	
-	 </script>
 
 
 	<script type = "text/javascript">

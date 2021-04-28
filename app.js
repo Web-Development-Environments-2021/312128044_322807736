@@ -35,8 +35,9 @@ var max_time;
 var max_food;
 var coin = true;
 
-function setHeart(){
-	heart_remain=2;
+function setLives(){
+	lives=5;
+	lbllives.value=5;
 }
 function setTime(time)
 {
@@ -83,6 +84,8 @@ function setFood(food)
 }
 
 function Start() {
+	document.getElementById('homeSound').muted=true;
+	document.getElementById('gameSound').muted=false;
 	coin = true;
 	move_ctr = 1;
 	context = canvas.getContext("2d");
@@ -100,45 +103,42 @@ function Start() {
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
 			
-			if ((i == 2 && j == 2) ||
-				(i == 7 && j == 7)){
+			if (i == 2 && j == 2){
 				board[i][j] = 10;
 			}
 			else if(i == 5 && j == 5)
 			{
 				coin_loc = [5,5];
 			}
-			else if((i == 7 && j == 2) ||
-					(i == 2&& j == 7)){
+			else if(i == 7 && j == 7){
 				board[i][j] = 11;
-
 			}
 			else if (
 				(i == 1 && j == 1) ||
-				(i == 3 && j == 3) ||
+				// (i == 3 && j == 3) ||
 				(i == 2 && j == 3) ||
 				(i == 3 && j == 2) ||
-				(i == 1 && j == 8) ||
-				(i == 3 && j == 6) ||
-				(i == 2 && j == 6) ||
+				// (i == 1 && j == 8) ||
+				// (i == 3 && j == 6) ||
+				// (i == 2 && j == 6) ||
 				(i == 3 && j == 7) ||
-				(i == 8 && j == 1) ||
-				(i == 6 && j == 3) ||
-				(i == 6 && j == 2) ||
+				// (i == 8 && j == 1) ||
+				// (i == 6 && j == 3) ||
+				// (i == 6 && j == 2) ||
 				(i == 7 && j == 3) ||
-				(i == 6 && j == 6) ||
+				// (i == 6 && j == 6) ||
 				(i == 6 && j == 7) ||
-				(i == 7 && j == 6) ||
-				(i == 8 && j == 8) ||
+				(i == 7 && j == 6) 
+				// (i == 8 && j == 8) 
 
-				(i == 0 && j == 4) ||
-				(i == 0 && j == 5) ||
-				(i == 4 && j == 0) ||
-				(i == 5 && j == 0) ||
-				(i == 9 && j == 4) ||
-				(i == 9 && j == 5) ||
-				(i == 4 && j == 9) ||
-				(i == 5 && j == 9)
+				// (i == 0 && j == 4) ||
+				// (i == 0 && j == 5) ||
+				// (i == 4 && j == 0) ||
+				// (i == 5 && j == 0) ||
+				// (i == 9 && j == 4) ||
+				// (i == 9 && j == 5) ||
+				// (i == 4 && j == 9) ||
+				// (i == 5 && j == 9)
 			) {
 				board[i][j] = 4;
 			} else {
@@ -447,11 +447,15 @@ function checkWin()
 {
 	if(max_food == 0)
 		{
+			document.getElementById('gameSound').muted = true;
 			window.clearInterval(interval);
-			
-			window.alert("good job! you have finished the game with a score of - "+score+" points and "+ time_elapsed+" seconds, think you can do better?")
+			document.getElementById('winSound').play();
+			window.alert("good job! you have finished the game with a score of - "+score+" points and "+ time_elapsed+" seconds, think you can do better?");
+			document.getElementById('homeSound').muted=false;
+			lastSoudPlayed='homeSound';
 		}
-}
+
+	}
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
@@ -514,15 +518,28 @@ function UpdatePosition() {
 	time_elapsed = Math.floor(max_time - time_elapsed);
 	if(lives == 0)
 	{
+
+		document.getElementById('gameSound').muted = true;
 		window.clearInterval(interval);
+		document.getElementById('loseSound').play();
 		window.alert("Loser!");
+		document.getElementById('homeSound').muted=false;
+		lastSoudPlayed='homeSound';
 	}
 	else if (time_elapsed == 0) {
+		document.getElementById('gameSound').muted = true;
 		window.clearInterval(interval);
-		if(score >= 100)
+		if(score >= 100){
+			document.getElementById('winSound').play();
 			window.alert("Winner!");
-		else
+		}
+
+		else{
+			document.getElementById('timeoutSound').play();
 			window.alert("You are better than "+score+"points");
+		}
+		document.getElementById('homeSound').muted=false;
+		lastSoudPlayed='homeSound';
 	} else {
 		
 		Draw(x);
@@ -599,8 +616,14 @@ function UpdateGhost(index)
 			board[pac_x_org][pac_y_org] = 2;
 			if(lives == 0)
 			{
+				document.getElementById('gameSound').muted=true;
+				window.clearInterval(interval);
+				document.getElementById('loseSound').play();
 				window.clearInterval(interval)
 				window.alert("you lost!");
+				document.getElementById('homeSound').muted=false;
+				lastSoudPlayed='homeSound';
+
 			}
 			return true;
 		}

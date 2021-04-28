@@ -76,7 +76,7 @@ Secline{
     height: 80px;
     /* margin-bottom: 5px; */
 }
-.navbar a {
+.navbar #ra ,#la ,#aa{
     color: #999;
     background: rgba(0, 0, 0, 0.5);
     padding: 15px 25px;
@@ -108,14 +108,14 @@ Secline{
     /* background-color:rgba(255, 255, 255, 0.774); */
     background-image:url("https://www.kindpng.com/picc/m/98-987839_pacman-ghost-png-pac-man-black-and-white.png");
 }
-.navbar a:hover {
+.navbar #ra:hover  ,#la:hover  ,#aa:hover {
     border: none;
     /* background: rgba(0, 0, 0, 0.4); */
     background: #fff;
     padding: 20px 25px;
     color: #1b1b1b;
 }
-.navbar a:active {
+.navbar #ra:active ,#la:active ,#aa:active {
     background-color: rgb(125, 47, 177);
     color: rgb(152, 250, 177);
     cursor: pointer;
