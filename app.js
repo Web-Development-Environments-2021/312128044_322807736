@@ -717,7 +717,6 @@ function wait(ms){
  function MoveCoin()
  {
 	
-	
 	var x = coin_loc[0];
 	var y = coin_loc[1];
 	var dirs = [[x+1,y],[x-1,y],[x,y+1],[x,y-1]];
