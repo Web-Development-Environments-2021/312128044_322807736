@@ -364,10 +364,19 @@
 		{if(document.getElementById(divID).style.display == 'block')
 			{return;}
 		
-		document.getElementById('gameSound').muted = true;
-		document.getElementById('homeSound').muted = false;
+		if(divID!='gameDiv'&&(!document.getElementById('gameSound').muted||!document.getElementById('gameSound').muted))
+		{
+			document.getElementById('gameSound').muted = true;
+			document.getElementById('homeSound').muted = false;
+			lastSoudPlayed='homeSound';
+		}
+		else if(divID!='gameDiv'){
+			lastSoudPlayed='homeSound';
+		}
 		document.getElementById(currDiv).style.display = 'none';
 		document.getElementById(divID).style.display = 'block';
+		if(divID!='gameDiv'){
+			window.clearInterval(interval);}
 		currDiv = divID;}, 300,divID);
 		
 	}
